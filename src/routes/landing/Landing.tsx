@@ -1,12 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Card } from '@uifabric/react-cards';
+import { Switch, Route } from 'react-router-dom';
 import { Image, Stack } from 'office-ui-fabric-react';
 import styled from 'styled-components';
 import BG from 'assets/bg.png';
 import Logo from 'assets/logo.png';
-import { MegaTitle } from 'components';
-import Locale from 'localization';
 import Signup from './Signup.form';
 import Login from './Login.form';
 

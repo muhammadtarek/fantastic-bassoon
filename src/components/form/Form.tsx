@@ -7,8 +7,6 @@ import {
   PrimaryButton,
   MessageBar,
   MessageBarType,
-  Spinner,
-  SpinnerSize,
   DatePicker,
   ChoiceGroup,
   DefaultButton,
@@ -191,15 +189,7 @@ function renderStacks({
 }
 
 function Form<T = Record<string, any>>(props: IFormProps<T>) {
-  const {
-    buttonText,
-    fieldsStacks,
-    cancelButtonOnClick,
-    cancelButtonText,
-    disabled,
-    onValidate,
-    ...stackProps
-  } = props;
+  const { buttonText, fieldsStacks, cancelButtonOnClick, cancelButtonText, disabled, ...stackProps } = props;
   const allFields = useMemo(() => {
     return fieldsStacks.map(group => group.fields).flat();
   }, [fieldsStacks]);

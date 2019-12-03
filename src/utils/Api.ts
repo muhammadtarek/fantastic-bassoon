@@ -1,5 +1,3 @@
-import Cookies from 'js-cookie';
-
 import { IApiResponse } from './Api.types';
 
 /**

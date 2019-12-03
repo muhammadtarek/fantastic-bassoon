@@ -1,6 +1,5 @@
 import Loadable from 'react-loadable';
 
-import { Constants } from 'utils';
 import { Loading } from 'components';
 
 const Landing = Loadable({
