@@ -43,7 +43,6 @@ export interface IFormProps<T = any> extends IStackProps {
   id: string;
   buttonText: string;
   fieldsStacks: IFieldsStack[];
-  storeProps: IFormReduxProps<T>;
   cancelButtonText?: string;
   cancelButtonOnClick?: Function;
   disabled?: boolean;
