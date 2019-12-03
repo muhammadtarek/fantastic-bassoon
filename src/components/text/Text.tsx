@@ -1,7 +1,18 @@
 import styled from 'styled-components';
-import { color, space, maxWidth, width, textAlign, WidthProps, MaxWidthProps, TextAlignProps } from 'styled-system';
+import {
+  color,
+  space,
+  maxWidth,
+  width,
+  textAlign,
+  WidthProps,
+  MaxWidthProps,
+  TextAlignProps,
+  SpaceProps,
+  SizeProps,
+} from 'styled-system';
 
-type Props = WidthProps & MaxWidthProps & TextAlignProps;
+type Props = WidthProps & MaxWidthProps & TextAlignProps & SpaceProps & SizeProps;
 
 const MegaTitle = styled.h1<Props>`
   font-size: 40px;
