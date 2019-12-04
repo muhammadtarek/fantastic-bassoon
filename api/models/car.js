@@ -48,11 +48,12 @@ function validateCar(car) {
         phone: joi.string().min(11).max(11).required(),
         description: joi.string()
     }
-    return joi.validate(car, schema, {
+    return joi.validate (car, schema, {
         allowUnknown: true,
         stripUnknown: {
             objects: true
-        }
+        },
+        abortEarly: false
     });
 }
 
