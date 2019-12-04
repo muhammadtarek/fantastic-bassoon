@@ -1,6 +1,6 @@
 const {Car, validateCar} = require('../models/car')
 
-// return JSON object as res object of {data, message, errors}  
+// return  {data, message, errors} JSON object as res object  
 function response(req_data, msg, err) {
     return {
         data: req_data,
@@ -9,6 +9,7 @@ function response(req_data, msg, err) {
     };
 }
 
+// return errors to be displayed on client side
 function get_errors (error) {
     var errors = {};
     error.details.forEach( function (detail) {
