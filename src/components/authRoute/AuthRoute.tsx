@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { isFeatureAuthorized, isFeatureEnabled } from 'utils';
+import { IUserStore } from 'store/types';
 import IAuthRouteProps from './AuthRoute.types';
 
 function AuthRoute(props: IAuthRouteProps) {
-  const { path, groupCode, component, isLoggedIn } = props;
+  const { path, userType, component, isLoggedIn } = props;
 
   // We always check if the user is logged in, if not we redirect to /login
   if (isLoggedIn) {
@@ -13,7 +15,7 @@ function AuthRoute(props: IAuthRouteProps) {
       // Check if the page is enable in feature flags
       if (isFeatureEnabled(path.toString())) {
         // Check if the user is authorized to access this page
-        if (isFeatureAuthorized(path, groupCode)) {
+        if (isFeatureAuthorized(path, userType)) {
           return <Route path={path} component={component} />;
         }
 
@@ -29,4 +31,9 @@ function AuthRoute(props: IAuthRouteProps) {
   return <h1>something went wrong</h1>;
 }
 
-export default AuthRoute;
+const mapStateToProps = ({ user }: { user: IUserStore }) => ({
+  userType: user.type,
+  isLoggedIn: user.isLoggedIn,
+});
+
+export default connect(mapStateToProps)(AuthRoute);

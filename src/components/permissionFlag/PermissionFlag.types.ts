@@ -1,5 +1,7 @@
+import UserType from 'store/types/User';
+
 export default interface IPermissionFlagProps {
   permissionKey: string;
-  groupCode: string;
+  userType: UserType;
   children: any;
 }

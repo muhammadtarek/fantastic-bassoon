@@ -15,7 +15,7 @@ export function validateField({
 } = {}): string | undefined {
   if (isRequired) {
     if (value === null || value === undefined || value === '') {
-      return `${label} is required`;
+      return `برجاء ادخال ${label}`;
     }
   }
 
