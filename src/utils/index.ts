@@ -6,6 +6,7 @@ import theme from './Theme';
 import * as Constants from './Constants';
 import copyToClipboard from './CopyToClipboard';
 
+export * from './Filters';
 export * from './Api.types';
 export * from './Enums';
 export * from './FeatureFlags';

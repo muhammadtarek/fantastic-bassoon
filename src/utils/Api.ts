@@ -86,7 +86,7 @@ class Api {
       status: response.status,
       result: jsonResponse.result,
       errors: jsonResponse.errors,
-      errorMessage: jsonResponse.errorMessage || `${jsonResponse.errorMessage}` || jsonResponse.message,
+      message: jsonResponse.message,
     };
 
     return apiResponse;

@@ -1,2 +1,2 @@
-const test = '';
-export default test;
+export const login = '/login';
+export const signup = '/signup';
