@@ -23,6 +23,7 @@ mongoose
 const reservationRouter = require('./routes/reservationRoute');
 // const reservationRouter = require('./routes/reservationRoute');
 const userRouter = require('./routes/userRoute');
+const authRouter = require('./routes/authRoute');
 
 app.use(express.json());
 app.use(
@@ -31,9 +32,9 @@ app.use(
   }),
 );
 
-app.use('/reservation', reservationRouter);
 // app.use('/reservation',reservationRouter);
 app.use('/user', userRouter);
+app.use('/auth', authRouter);
 
 app.listen(port, hostname, err => {
   console.log(`Server running at http://${hostname}:${port}/`);
