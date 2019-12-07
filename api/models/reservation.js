@@ -12,12 +12,12 @@ let reservationSchema = new mongoose.Schema({
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      refPath: "user"
+      ref: "user"
     },
     carId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      refPath: "car"
+      ref: "car"
     }
   })
 

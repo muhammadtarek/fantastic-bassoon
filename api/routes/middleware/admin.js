@@ -1,8 +1,5 @@
 module.exports = function (req ,res ,next) {
-    console.log(req.user.isAdmin);
-    
-    if (!req.user.isAdmin)
-    return res.status(403).send ('Access denied');
-
+    if (!req.user.userType=='1')
+    return res.status(403).send ('Access denied not admin');
     next();
 }

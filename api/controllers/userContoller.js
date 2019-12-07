@@ -16,7 +16,7 @@ exports.createUser = async function(req,res){
         phone: req.body. phone,
         address: req.body.address,
         photo: req.body.photo,
-        type: req.body.type,
+        userType: req.body.userType,
     });
     const salt = await bcrypt.genSalt(10);
     const hasedPassword = await bcrypt.hash(user.password,salt);

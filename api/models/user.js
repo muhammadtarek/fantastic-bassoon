@@ -9,11 +9,13 @@ password: {type: String , required : true},
 phone: {type: String , required : true},
 address: {type: String , required : true},
 photo: {type: String , required : true},
-isAdmin: {type: Boolean , required : false},
+userType: {type: Number},
 });
 
 schema.methods.generateAuthToken = function () {
-    const token = jwt.sign({_id: this._id,username : this.username,isAdmin : this.isAdmin},'jwtPrivateKey');
+    const token = jwt.sign({_id: this._id,username : this.username,email : this.email,
+        phone : this.phone,address : this.address,photo : this.photo,
+        userType : this.userType},'jwtPrivateKey');
     return token;
 }
 const user = mongoose.model("user",schema);

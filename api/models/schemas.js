@@ -16,29 +16,29 @@ const schemas = {
   user: Joi.object()
     .options({ abortEarly: false })
     .keys({
-      name: Joi.required()
-        .string()
+      name: Joi.string()
         .min(4)
-        .max(50),
-      password: Joi.required()
+        .max(50)
+        .required(),
+      password: Joi.string()
         .min(4)
-        .max(30),
-      phone: Joi.required()
-        .min(11)
-        .max(11),
+        .max(50)
+        .required(),
+      phone: Joi.required(),
       photo: Joi.required(),
-      email: Joi.required()
-        .string()
+      email: Joi.string()
         .min(10)
-        .max(50),
-      username: Joi.required()
-        .string()
+        .max(50)
+        .required(),
+      username: Joi.string()
         .min(4)
-        .max(50),
-      address: Joi.required()
-        .string()
+        .max(50)
+        .required(),
+      address: Joi.string()
         .min(4)
-        .max(50),
+        .max(50)
+        .required(),
+      userType: Joi.number().required(),
     }),
   auth: Joi.object()
     .options({ abortEarly: false })
