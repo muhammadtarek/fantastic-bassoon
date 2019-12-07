@@ -30,7 +30,7 @@ function LandingPage() {
           <Stack styles={{ root: { width: '75%', minWidth: '400px' } }}>
             <Switch>
               <Route path="/signup" component={Signup} />
-              <Route path="/login" component={Login} />
+              <Route exact path="/login" component={Login} />
             </Switch>
           </Stack>
         </Stack>
