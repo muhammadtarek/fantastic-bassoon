@@ -17,7 +17,7 @@ let reservationSchema = new mongoose.Schema({
     carId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "car"
+      ref: "Car"
     }
   })
 

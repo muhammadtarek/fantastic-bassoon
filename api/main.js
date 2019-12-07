@@ -26,7 +26,7 @@ const userRouter = require('./routes/userRoute');
 const authRouter = require('./routes/authRoute');
 
 const reservationRouter = require('./routes/reservationRoute');
-const cars = require('./routes/carRoute');
+const carRouter = require('./routes/carRoute');
 
 app.use(express.json());
 app.use(
@@ -38,7 +38,7 @@ app.use(
 app.use('/auth', authRouter);
 app.use('/user', userRouter);
 app.use('/reservation', reservationRouter);
-app.use('/cars', cars);
+app.use('/cars', carRouter);
 
 app.listen(port, hostname, err => {
   console.log(`Server running at http://${hostname}:${port}/`);

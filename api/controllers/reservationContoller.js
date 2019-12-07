@@ -1,10 +1,9 @@
 var reservationModel = require('../models/reservation');
 
 
-userId="5debd553ac4a1b3eb0eff527";
-
 exports.index = async function(req, res) {
-    const reservations = await reservationModel.find({userId:userId}).select("-__v").populate('userId').populate('carId').exec();
+    // return res.status(200).json(req.user._id);
+    const reservations = await reservationModel.find({userId:req.user._id}).select("-__v").populate('userId').populate('carId').exec();
     return res.status(200).json({data : reservations, message : null , errors : null});
 };
 
@@ -13,8 +12,8 @@ exports.store = async function(req, res) {
     startTime=updateTime(req.body.startTime);
     endTime=updateTime(req.body.endTime);
     //cehck valida reservations
-    const reservations = await reservationModel.find({carId:"5de6a0cc0531d6627c420e01"}).exec();
-    errs=checkReservations(startTime,endTime,"5de6a0cc0531d6627c420e01",reservations);    
+    const reservations = await reservationModel.find({carId:req.params.id}).exec();
+    errs=checkReservations(startTime,endTime,req.params.id,reservations);    
     if(errs){
         return res.status(422).json({data : req.body , message : "Invalid Time" , errs : errs});
     }
@@ -22,8 +21,8 @@ exports.store = async function(req, res) {
     const newReservation = new reservationModel({
         startTime: startTime,
         endTime: endTime,
-        userId : userId,
-        carId:"5de6a0cc0531d6627c420e01"
+        userId : req.user._id,
+        carId:req.params.id
       });
     const reservationSaved = await newReservation.save();
     return res.status(200).json({data : reservationSaved , message : null , errors : null});
@@ -38,9 +37,11 @@ exports.update = async function(req, res) {
     //update time to timezone "cairo"
     startTime=updateTime(req.body.startTime);
     endTime=updateTime(req.body.endTime);
+    //get reservation
+    let reservation=await reservationModel.find({_id:req.params.id}).exec();
     //cehck valida reservations
-    const reservations = await reservationModel.find({carId:"5de6a0cc0531d6627c420e01"}).exec();
-    errs=checkReservations(startTime,endTime,"5de6a0cc0531d6627c420e01",reservations);    
+    const reservations = await reservationModel.find({carId:reservation.carId}).exec();
+    errs=checkReservations(startTime,endTime,reservation.carId,reservations);    
     if(errs){
         return res.status(422).json({data : req.body , message : "Invalid Time" , errs : errs});
     }
