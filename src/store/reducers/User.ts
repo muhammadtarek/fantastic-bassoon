@@ -2,7 +2,7 @@ import { decode } from 'jsonwebtoken';
 import { camelizeKeys } from 'humps';
 
 import { IUserStore, IAction, IUserPayload } from 'store/types';
-import { Actions, User } from 'store/actions';
+import { Actions, UserActions } from 'store/actions';
 import UserType, { IUser } from 'store/types/User';
 
 const initialState: IUserStore = {
@@ -22,16 +22,16 @@ const initialState: IUserStore = {
 
 export default (state: IUserStore = initialState, action: IAction<IUserPayload>) => {
   switch (action.type) {
-    case User[Actions.login]:
-    case User[Actions.signup]: {
+    case UserActions.login:
+    case UserActions.signup: {
       return {
         ...state,
         isLoading: true,
       };
     }
 
-    case User[Actions.success]:
-    case User[Actions.authenticate]: {
+    case UserActions.success:
+    case UserActions.authenticate: {
       const { token } = action.payload;
       const { _id, address, email, name, phone, photo, type, username } = camelizeKeys(decode(token) || {}) as IUser;
 
@@ -50,7 +50,7 @@ export default (state: IUserStore = initialState, action: IAction<IUserPayload>)
       };
     }
 
-    case User[Actions.failure]: {
+    case UserActions.failure: {
       return {
         ...state,
         isLoading: false,
@@ -58,7 +58,7 @@ export default (state: IUserStore = initialState, action: IAction<IUserPayload>)
       };
     }
 
-    case User[Actions.logout]: {
+    case UserActions.logout: {
       return initialState;
     }
 

@@ -2,7 +2,7 @@ import { put } from 'redux-saga/effects';
 
 import { IApiResponse } from 'utils';
 import { IAction } from 'store/types';
-import { User, Actions } from 'store/actions';
+import { UserActions, Actions } from 'store/actions';
 
 /**
  * @param {Object} entity
@@ -14,7 +14,7 @@ export default function* fetchEntity(entity: Record<string, any>, api: Function,
     const response: IApiResponse = yield api();
 
     if (response.status === 200 || response.status === 201) yield put(entity.success(response.result, payload));
-    else if (response.status === 401) yield put({ type: User[Actions.logout] });
+    else if (response.status === 401) yield put({ type: UserActions.logout });
     else
       yield put(
         entity.failure({
