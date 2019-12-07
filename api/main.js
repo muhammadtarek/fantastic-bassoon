@@ -16,9 +16,12 @@ console.log("Connected to Database");
 
 
 
-//const reservationRouter = require('./routes/reservationRoute');
+
 const userRouter = require('./routes/userRoute');
 const authRouter = require('./routes/authRoute');
+
+const reservationRouter = require('./routes/reservationRoute');
+
 
 app.use(express.json());
 app.use(express.urlencoded({
@@ -26,9 +29,12 @@ app.use(express.urlencoded({
 }))
 
 
-//app.use('/reservation',reservationRouter);
+
 app.use('/user',userRouter);
 app.use('/auth',authRouter);
+
+app.use('/reservation',reservationRouter);
+
 
 app.listen(port, hostname, (err) => {
     console.log(`Server running at http://${hostname}:${port}/`);
