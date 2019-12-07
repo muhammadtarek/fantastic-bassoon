@@ -1,10 +1,8 @@
 import UserType from 'store/types/User';
-import { SIGNUP, LOGIN, LISTINGS } from './Constants';
+import { LISTINGS } from './Constants';
 
 const permissions: Map<string | string[], UserType[]> = new Map();
 
-permissions.set(SIGNUP, [UserType.normal, UserType.admin]);
-permissions.set(LOGIN, [UserType.normal, UserType.admin]);
 permissions.set(LISTINGS, [UserType.normal, UserType.admin]);
 
 /**
