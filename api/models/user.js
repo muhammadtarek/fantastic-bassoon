@@ -9,7 +9,7 @@ password: {type: String , required : true},
 phone: {type: String , required : true},
 address: {type: String , required : false},
 photo: {type: String , required : false},
-userType: {type: Number, required : false},
+userType: {type: Number, required : false , default :0},
 });
 
 schema.methods.generateAuthToken = function () {
