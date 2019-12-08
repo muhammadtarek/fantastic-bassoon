@@ -1,2 +1,2 @@
-const test = '';
-export default test;
+export const login = 'auth';
+export const signup = 'user';

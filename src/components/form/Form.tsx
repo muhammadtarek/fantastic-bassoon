@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useMemo, useEffect } from 'react';
 import {
   Stack,
@@ -85,9 +84,6 @@ function renderFields({
             validateOnLoad={false}
             disabled={shouldDisable}
             value={values[itemKey]}
-            styles={{
-              flex: 1,
-            }}
             {...props}
           />
         );
@@ -193,6 +189,7 @@ function renderStacks({
 function Form<T = Record<string, any>>(props: IFormProps<T>) {
   const {
     buttonText,
+    storeProps,
     fieldsStacks,
     cancelButtonOnClick,
     cancelButtonText,
@@ -200,27 +197,30 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
     onValidate,
     ...stackProps
   } = props;
+  const { action, isLoading, data, errorMessage, errors } = storeProps;
   const allFields = useMemo(() => {
     return fieldsStacks.map(group => group.fields).flat();
   }, [fieldsStacks]);
 
-  const [_errors, setErrors] = useState({});
-  const [_errorMessage, setErrorMessage] = useState();
-  const [tempData, setTempData] = useState({});
+  console.log(errors);
+
+  const [_errors, setErrors] = useState(errors || {});
+  const [_errorMessage, setErrorMessage] = useState(errorMessage);
+  const [tempData, setTempData] = useState({ ...data });
   const [canSubmit, setCanSubmit] = useState(false);
-  const shouldDisable = !!disabled;
+  const shouldDisable = isLoading || !!disabled;
 
-  // useEffect(() => {
-  //   if (errors) {
-  //     setErrors(errors);
-  //   }
-  // }, [errors]);
+  useEffect(() => {
+    if (errors) {
+      setErrors(errors);
+    }
+  }, [errors]);
 
-  // useEffect(() => {
-  //   if (errorMessage) {
-  //     setErrorMessage(errorMessage);
-  //   }
-  // }, [errorMessage]);
+  useEffect(() => {
+    if (errorMessage) {
+      setErrorMessage(errorMessage);
+    }
+  }, [errorMessage]);
 
   function setItem(key: string, value: string) {
     const newTempData = { ...tempData };
@@ -240,14 +240,14 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
   function onClick(evt: Record<string, any>) {
     evt.preventDefault();
     const formValidationResults = validateAllFields<T>({ fields: allFields, data: tempData, errors: _errors });
-    const externalValidationResults: IFormValidation<T> = {
+    let externalValidationResults: IFormValidation<T> = {
       isValid: true,
     };
 
     // If custom onValidate method is provided
-    // if (onValidate) {
-    //   externalValidationResults = onValidate();
-    // }
+    if (onValidate && data) {
+      externalValidationResults = onValidate(data);
+    }
 
     if (!formValidationResults.isValid && !externalValidationResults.isValid) {
       setErrors({ ...formValidationResults.errors, ...externalValidationResults.errors });
@@ -255,10 +255,9 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
       if (externalValidationResults.errorMessage) {
         setErrorMessage(externalValidationResults.errorMessage);
       }
+    } else if (action) {
+      action(tempData);
     }
-    // else if (action) {
-    //   action(tempData);
-    // }
   }
 
   function onCancel() {
@@ -324,9 +323,12 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
               {cancelButtonText}
             </DefaultButton>
           )}
-          <PrimaryButton disabled={shouldDisable || !canSubmit} onClick={onClick} style={{ maxWidth: 'max-content' }}>
-            {buttonText}
-          </PrimaryButton>
+          <PrimaryButton
+            disabled={shouldDisable || !canSubmit}
+            onClick={onClick}
+            style={{ maxWidth: 'max-content' }}
+            onRenderChildren={() => (isLoading ? <Spinner size={SpinnerSize.medium} /> : <span>{buttonText}</span>)}
+          />
         </Stack>
       </Stack>
     </form>

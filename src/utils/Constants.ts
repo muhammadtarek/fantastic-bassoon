@@ -1,2 +1,4 @@
-const TEST = 'TEST';
-export default TEST;
+export const LOGIN = '/login';
+export const LISTINGS = '/cars';
+
+export const AUTH_COOKIE = 'RNT_AUTH_TKN';

@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import logo from 'assets/logo.png';
+import { SubHeading, Text } from 'components/text';
+import Locale from 'localization';
 import { Colors } from 'utils';
 import IHeaderProps from './Header.types';
 import './FullWidth.css';
@@ -12,6 +14,16 @@ const LogoContainer = styled(NavLink)`
   background-color: transparent;
   text-decoration: none;
   cursor: pointer !important;
+  color: ${Colors.neutralPrimaryAlt} !important;
+  text-decoration: ${Colors.neutralPrimaryAlt} !important;
+`;
+
+const UserName = styled(Text)`
+  max-width: 241px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: unset;
   color: ${Colors.neutralPrimaryAlt} !important;
   text-decoration: ${Colors.neutralPrimaryAlt} !important;
 `;
@@ -37,7 +49,7 @@ const HeaderStyled = styled.header`
 `;
 
 function Header(props: IHeaderProps) {
-  const { navItems, farItems } = props;
+  const { userDesc, navItems, farItems } = props;
 
   const commandBarStyles = () => ({
     root: {
@@ -45,6 +57,13 @@ function Header(props: IHeaderProps) {
       paddingRight: '0',
     },
   });
+
+  const Separator = styled.div`
+    height: 25px;
+    width: 1px;
+    background-color: ${Colors.neutralSecondary};
+    margin: 0px 6px;
+  `;
 
   return (
     <HeaderContainer>
@@ -59,9 +78,12 @@ function Header(props: IHeaderProps) {
                 disableShrink
                 style={{ flexShrink: 0 }}
               >
-                <img src={logo} width={30} alt="rentify" />
+                <img src={logo} width={30} alt="Logo" />
+                <SubHeading>{Locale.header.name}</SubHeading>
               </Stack>
             </LogoContainer>
+            <Separator />
+            <UserName color={Colors.neutralPrimaryAlt}>{userDesc}</UserName>
           </Stack>
 
           <CommandBar

@@ -21,4 +21,9 @@ export default {
       goToLogin: 'Have an account? Login',
     },
   },
+  header: {
+    logout: 'Logout',
+    name: 'Name',
+  },
+  hideDialog: 'Close',
 };
