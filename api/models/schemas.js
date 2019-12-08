@@ -35,7 +35,8 @@ const schemas = {
       }),
       photo: Joi.string(),
       email: Joi.string()
-        .min(10)
+        .email()
+        .min(8)
         .max(50)
         .required(),
       username: Joi.string()
