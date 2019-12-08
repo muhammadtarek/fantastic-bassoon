@@ -1,4 +1,5 @@
 const http = require('http');
+const cors = require('cors');
 
 const hostname = '127.0.0.1';
 const port = process.env.port || 3000;
@@ -28,17 +29,18 @@ const authRouter = require('./routes/authRoute');
 const reservationRouter = require('./routes/reservationRoute');
 const carRouter = require('./routes/carRoute');
 
-app.use(express.json());
-app.use(
-  express.urlencoded({
-    extended: false,
-  }),
-);
+app.use(cors())
 
-app.use('/auth', authRouter);
-app.use('/user', userRouter);
-app.use('/reservation', reservationRouter);
-app.use('/cars', carRouter);
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: false
+}))
+
+
+app.use('/api/auth',authRouter);
+app.use('/api/user',userRouter);
+app.use('/api/reservation',reservationRouter);
+app.use('/api/cars', cars);
 
 app.listen(port, hostname, err => {
   console.log(`Server running at http://${hostname}:${port}/`);
