@@ -40,7 +40,7 @@ app.use(express.urlencoded({
 app.use('/api/auth',authRouter);
 app.use('/api/user',userRouter);
 app.use('/api/reservation',reservationRouter);
-app.use('/api/cars', cars);
+app.use('/api/cars', carRouter);
 
 app.listen(port, hostname, err => {
   console.log(`Server running at http://${hostname}:${port}/`);
