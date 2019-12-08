@@ -54,7 +54,8 @@ export default (state: IUserStore = initialState, action: IAction<IUserPayload>)
       return {
         ...state,
         isLoading: false,
-        errorMessage: action.payload.message,
+        message: action.payload.message,
+        errors: action.payload.errors,
       };
     }
 

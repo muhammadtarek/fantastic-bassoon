@@ -13,7 +13,7 @@ export enum UserActions {
 export const userActions = {
   login: (login: ILogin) => action(UserActions.login, { ...login }),
   success: (token: string) => action(UserActions.success, { token }),
-  failure: ({ message }: IError<{}>) => action(UserActions.failure, { message }),
+  failure: ({ message, errors }: IError<{}>) => action(UserActions.failure, { message, errors }),
   logout: () => action(UserActions.logout),
   authenticate: (token: string) => action(UserActions.authenticate, { token }),
   signup: (user: Partial<IUser>) => action(UserActions.signup, { ...user }),

@@ -6,7 +6,7 @@ import { ITextFieldProps, Link, Stack } from 'office-ui-fabric-react';
 import Locale from 'localization';
 import { Colors } from 'utils';
 import { useSelector, useDispatch } from 'react-redux';
-import { IUserStore } from 'store/types';
+import { IUserStore, IUser } from 'store/types';
 import { signup } from 'store/actions';
 
 const NameField: IField<ITextFieldProps> = {
@@ -47,7 +47,7 @@ const UsernameField: IField<ITextFieldProps> = {
 };
 
 const PhoneNumberField: IField<ITextFieldProps> = {
-  itemKey: 'phoneNumber',
+  itemKey: 'phone',
   type: FieldType.textField,
   props: {
     label: Locale.landing.signup.phoneNumber,
@@ -75,8 +75,8 @@ function SignupForm() {
       <SubHeading mb={4} style={{ fontWeight: 500 }} color={Colors.neutralSecondary}>
         {Locale.landing.signup.help}
       </SubHeading>
-      <Form
-        storeProps={{ errorMessage, errors, isLoading, action: () => dispatch(signup) }}
+      <Form<IUser>
+        storeProps={{ errorMessage, errors, isLoading, action: (data: IUser) => dispatch(signup(data)) }}
         id="signup"
         name="signup"
         buttonText={Locale.landing.signup.cta}

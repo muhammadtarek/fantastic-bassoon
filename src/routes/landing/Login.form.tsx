@@ -6,7 +6,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { ITextFieldProps, Link, Stack } from 'office-ui-fabric-react';
 import Locale from 'localization';
 import { Colors } from 'utils';
-import { IUserStore } from 'store/types';
+import { IUserStore, ILogin } from 'store/types';
 import { login } from 'store/actions';
 
 const EmailField: IField<ITextFieldProps> = {
@@ -47,12 +47,12 @@ function LoginForm() {
       <SubHeading mb={4} style={{ fontWeight: 500 }} color={Colors.neutralSecondary}>
         {Locale.landing.login.help}
       </SubHeading>
-      <Form
+      <Form<ILogin>
         storeProps={{
           errorMessage,
           errors,
           isLoading,
-          action: () => dispatch(login),
+          action: (data: ILogin) => dispatch(login(data)),
         }}
         id="login"
         name="login"

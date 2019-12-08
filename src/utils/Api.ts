@@ -1,4 +1,6 @@
+import Cookies from 'js-cookie';
 import { IApiResponse } from './Api.types';
+import { AUTH_COOKIE } from './Constants';
 
 /**
  * Gets the base url for APIs
@@ -59,8 +61,7 @@ class Api {
     body?: T,
   ): Promise<IApiResponse> => {
     // First, we need the current JWT token in all requests
-    // TODO: Add the token cookie
-    const token = '';
+    const token = Cookies.get(AUTH_COOKIE);
 
     /**
      * @fixme include polyfills for older browsers
@@ -68,7 +69,11 @@ class Api {
      */
     const headersConfig = new Headers(headers);
     headersConfig.append('Content-Type', 'application/json');
-    headersConfig.append('Authorization', `Bearer ${token}`);
+    headersConfig.append('Access-Control-Allow-Origin', '*');
+
+    if (token) {
+      headersConfig.append('Authorization', `Bearer ${token}`);
+    }
 
     // Setup fetch request config, we pascalize object keys due to C# naming convention
     const config: RequestInit = {
@@ -80,11 +85,14 @@ class Api {
     // Wait for the API response
     // process.env.REACT_APP_BASE_URL can be found in /env/.env.{env}
     const response: Response = await fetch(`${getBaseUrl()}/api/${url}`, config);
+    console.log(response);
     const jsonResponse = await response.json();
+
+    console.log(jsonResponse);
 
     const apiResponse: IApiResponse = {
       status: response.status,
-      result: jsonResponse.result,
+      data: jsonResponse.data,
       errors: jsonResponse.errors,
       message: jsonResponse.message,
     };
