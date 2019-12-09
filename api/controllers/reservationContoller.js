@@ -45,7 +45,7 @@ exports.update = async function(req, res) {
     if(errs){
         return res.status(422).json({data : req.body , message : "Invalid Time" , errs : errs});
     }
-    const reservation = await reservationModel.updateOne({
+     reservation = await reservationModel.updateOne({
         _id: req.params.id
       }, {
         $set: {

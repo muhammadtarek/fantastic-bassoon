@@ -2,12 +2,17 @@ let userModel = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-exports.createUser = async function(req,res){
+exports.createUser = async function(req,res){    
     let user = await userModel.findOne({email: req.body.email});
     if (user)  return res.status(400).json({data : null, message : "Email already registered" , errors : null});
      user = await userModel.findOne({username: req.body.username});
     if (user)  return res.status(400).json({data : null, message : "Username already exists" , errors : null});
     
+    let userImagePath = "";
+    try {
+        userImagePath = req.file.path;
+    } catch (ex) {console.log('user didn\'t upload image')}
+        
      user = new userModel({
         name: req.body.name,
         email: req.body.email,
@@ -15,7 +20,7 @@ exports.createUser = async function(req,res){
         password: req.body.password,
         phone: req.body. phone,
         address: req.body.address,
-        photo: req.body.photo,
+        photo: userImagePath,
         userType: req.body.userType,
     });
     const salt = await bcrypt.genSalt(10);
