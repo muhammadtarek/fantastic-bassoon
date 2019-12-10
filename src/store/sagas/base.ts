@@ -13,7 +13,8 @@ export default function* fetchEntity(entity: Record<string, any>, api: Function,
   try {
     const response: IApiResponse = yield api();
 
-    if (response.status === 200 || response.status === 201) yield put(entity.success(response.data, payload));
+    if (response.status === 200 || response.status === 201 || response.status === 304)
+      yield put(entity.success(response.data, payload));
     else if (response.status === 401) yield put({ type: UserActions.logout });
     else {
       yield put(
