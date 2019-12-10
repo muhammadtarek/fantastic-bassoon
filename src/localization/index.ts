@@ -22,6 +22,8 @@ export default {
     },
   },
   header: {
+    listings: 'Listings',
+    history: 'History',
     logout: 'Logout',
     name: 'Name',
   },

@@ -37,6 +37,7 @@ const HeaderContainer = styled.div`
   z-index: 999;
   background-color: #fff;
   width: -webkit-fill-available;
+  width: -moz-available;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +71,7 @@ function Header(props: IHeaderProps) {
       <HeaderStyled>
         <Stack horizontal verticalAlign="center">
           <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }} disableShrink style={{ flexShrink: 0 }}>
-            <LogoContainer to="dashboard">
+            <LogoContainer to="listings">
               <Stack
                 horizontal
                 verticalAlign="center"
@@ -79,7 +80,6 @@ function Header(props: IHeaderProps) {
                 style={{ flexShrink: 0 }}
               >
                 <img src={logo} width={30} alt="Logo" />
-                <SubHeading>{Locale.header.name}</SubHeading>
               </Stack>
             </LogoContainer>
             <Separator />
