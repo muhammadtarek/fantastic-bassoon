@@ -1,9 +1,12 @@
 import UserType from 'store/types/User';
-import { LISTINGS } from './Constants';
+import { LISTINGS, CONTROL_CAR, RENT_CAR } from './Constants';
 
 const permissions: Map<string | string[], UserType[]> = new Map();
 
 permissions.set(LISTINGS, [UserType.normal, UserType.admin]);
+
+permissions.set(CONTROL_CAR, [UserType.admin]);
+permissions.set(RENT_CAR, [UserType.normal]);
 
 /**
  * Check if the user is authorized to access this feature

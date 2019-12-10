@@ -72,7 +72,7 @@ class Api {
     headersConfig.append('Access-Control-Allow-Origin', '*');
 
     if (token) {
-      headersConfig.append('Authorization', `Bearer ${token}`);
+      headersConfig.append('x-auth-token', token);
     }
 
     // Setup fetch request config, we pascalize object keys due to C# naming convention

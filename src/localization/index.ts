@@ -21,11 +21,22 @@ export default {
       goToLogin: 'Have an account? Login',
     },
   },
+  listings: {
+    header: 'Car listings',
+    subheading: 'Test',
+    empty: 'No cars are available',
+    car: {
+      name: 'Name',
+      color: 'Color:',
+      rent: 'Rent',
+    },
+  },
   header: {
     listings: 'Listings',
     history: 'History',
     logout: 'Logout',
     name: 'Name',
+    admin: 'Admin',
   },
   hideDialog: 'Close',
 };

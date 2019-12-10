@@ -1,5 +1,5 @@
 import { ILogin, IError, IUser } from 'store/types';
-import { action } from './base';
+import action from './base';
 
 export enum UserActions {
   login = 'user_login',
