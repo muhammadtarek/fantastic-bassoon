@@ -22,7 +22,6 @@ const carSchema = new mongoose.Schema({
     },
     images: {
         type: [String],
-        required: true
     },
     phone: {
         type: String,
@@ -44,7 +43,7 @@ function validateCar(car) {
         name: joi.string().min(3).max(255).required(),
         color: joi.string().required(),
         price: joi.number().greater(0).required(),
-        images: joi.array().items(joi.string().required()).required(),
+        images: joi.array().items(joi.string()),
         phone: joi.string().min(11).max(11).required(),
         description: joi.string()
     }

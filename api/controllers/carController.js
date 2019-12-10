@@ -50,13 +50,21 @@ exports.car_creat = async function (req, res) {
             const errors = get_errors(error);
             return res.status(400).send(response(req.body, 'Please enter valid data', errors)) 
         }
+    
+        const images = [];
+        if(req.files) {
+            
+            req.files.forEach(image => {                
+                images.push(image.path);
+            });
+        }    
         let car = new Car ({
             name: req.body.name,
             color: req.body.color,
             description: req.body.description,
             phone: req.body.phone,
             price: req.body.price,
-            images: req.body.images
+            images: images
         });
     
         car = await car.save();
