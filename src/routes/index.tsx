@@ -60,7 +60,8 @@ function AuthLayout(props: IAuthLayoutProps) {
         <Header
           navItems={filterContextualMenuItems(userType, getCommandBarItems(history))}
           farItems={getFarCommandBarItems(history, logout)}
-          userDesc={name}
+          name={name}
+          isAdmin={userType === UserType.admin}
         />
       )}
 

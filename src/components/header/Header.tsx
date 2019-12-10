@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import logo from 'assets/logo.png';
-import { Text } from 'components/text';
+import { Text, Caption } from 'components/text';
 import { Colors } from 'utils';
+import Locale from 'localization';
 import IHeaderProps from './Header.types';
 import './FullWidth.css';
 
@@ -49,7 +50,7 @@ const HeaderStyled = styled.header`
 `;
 
 function Header(props: IHeaderProps) {
-  const { userDesc, navItems, farItems } = props;
+  const { name, isAdmin, navItems, farItems } = props;
 
   const commandBarStyles = () => ({
     root: {
@@ -82,7 +83,15 @@ function Header(props: IHeaderProps) {
               </Stack>
             </LogoContainer>
             <Separator />
-            <UserName color={Colors.neutralPrimaryAlt}>{userDesc}</UserName>
+            <UserName color={Colors.neutralPrimaryAlt}>{name}</UserName>
+            {isAdmin && (
+              <Caption
+                color={Colors.white}
+                style={{ padding: '4px', backgroundColor: Colors.themeSecondary, borderRadius: 4 }}
+              >
+                {Locale.header.admin}
+              </Caption>
+            )}
           </Stack>
 
           <CommandBar
