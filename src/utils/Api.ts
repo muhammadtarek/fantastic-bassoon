@@ -85,10 +85,7 @@ class Api {
     // Wait for the API response
     // process.env.REACT_APP_BASE_URL can be found in /env/.env.{env}
     const response: Response = await fetch(`${getBaseUrl()}/api/${url}`, config);
-    console.log(response);
     const jsonResponse = await response.json();
-
-    console.log(jsonResponse);
 
     const apiResponse: IApiResponse = {
       status: response.status,

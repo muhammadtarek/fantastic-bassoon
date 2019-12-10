@@ -202,8 +202,6 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
     return fieldsStacks.map(group => group.fields).flat();
   }, [fieldsStacks]);
 
-  console.log(errors);
-
   const [_errors, setErrors] = useState(errors || {});
   const [_errorMessage, setErrorMessage] = useState(errorMessage);
   const [tempData, setTempData] = useState({ ...data });
@@ -275,9 +273,6 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
   const messageBarStyles = () => ({
     root: {
       maxWidth: '300px',
-    },
-    icon: {
-      lineHeight: '13px',
     },
   });
 
