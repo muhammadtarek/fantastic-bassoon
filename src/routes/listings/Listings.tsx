@@ -1,6 +1,4 @@
 import React from 'react';
-import { Stack } from 'office-ui-fabric-react';
-import { Header } from 'components';
 import PageContainer from 'components/pageContainer';
 
 function Listings() {
