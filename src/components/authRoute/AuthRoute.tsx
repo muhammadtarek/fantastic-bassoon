@@ -32,7 +32,7 @@ function AuthRoute(props: IAuthRouteProps) {
 }
 
 const mapStateToProps = ({ user }: { user: IUserStore }) => ({
-  userType: user.type,
+  userType: user.userType,
   isLoggedIn: user.isLoggedIn,
 });
 

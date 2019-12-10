@@ -1,6 +1,6 @@
 import { takeLatest } from 'redux-saga/effects';
 
-import { Actions, UserActions } from 'store/actions';
+import { UserActions } from 'store/actions';
 import { saveToken, removeToken, loginUser, signupUser } from './User';
 
 export default function* root() {
