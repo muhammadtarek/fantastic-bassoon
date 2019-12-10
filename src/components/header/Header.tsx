@@ -4,8 +4,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import logo from 'assets/logo.png';
-import { SubHeading, Text } from 'components/text';
-import Locale from 'localization';
+import { Text } from 'components/text';
 import { Colors } from 'utils';
 import IHeaderProps from './Header.types';
 import './FullWidth.css';
