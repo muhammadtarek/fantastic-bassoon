@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Icon, Stack, IIconStyles, FontWeights, Image, Button, PrimaryButton } from 'office-ui-fabric-react';
+import { Icon, Stack, IIconStyles, FontWeights, Image, PrimaryButton } from 'office-ui-fabric-react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
 import { Colors } from 'utils';
 import Locale from 'localization';
 import { PermissionFlag } from 'components';
 import { CONTROL_CAR, RENT_CAR } from 'utils/Constants';
 import ImagePreview from 'components/imagePreview';
-import Text, { Heading, Title, MegaTitle, Caption } from '../text';
+import Text, { Heading, MegaTitle, Caption } from '../text';
 import { ICarCardProps } from './CarCard.types';
 import ColorPreview from '../colorPreview';
 
