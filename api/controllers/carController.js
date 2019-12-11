@@ -50,19 +50,18 @@ exports.car_creat = async function (req, res) {
             const errors = get_errors(error);
             return res.status(400).send(response(req.body, 'Please enter valid data', errors))
         }
-    
+
         const images = [];
         if(req.files) {
-            
-            req.files.forEach(image => {                
+
+            req.files.forEach(image => {
                 images.push(image.path);
             });
-        }    
+        }
         let car = new Car ({
             name: req.body.name,
             color: req.body.color,
             description: req.body.description,
-            phone: req.body.phone,
             price: req.body.price,
             images: images
         });
@@ -95,7 +94,6 @@ exports.car_update = async function (req, res) {
         car.name = (req.body.name) ? req.body.name : car.name;
         car.color = (req.body.color) ? req.body.color : car.color;
         car.description = (req.body.description) ? req.body.description : car.description;
-        car.phone = (req.body.phone) ? req.body.phone : car.phone;
         car.price = (req.body.price) ? req.body.price : car.price;
         car.images = (req.body.images) ? req.body.images : car.images;
 
