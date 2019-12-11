@@ -22,7 +22,8 @@
     "types": [
       "jest",
       "node"
-    ]
+    ],
+    "downlevelIteration": true
   },
   "include": [
     "src"
