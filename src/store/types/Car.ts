@@ -14,6 +14,7 @@ export interface ICarsStore extends IBaseState<{}> {
 
 export interface IUpsertCarStore extends IBaseState<{}> {
   car?: ICar;
+  isUpserted: boolean;
 }
 
 export interface ICarsPayload extends IError<{}> {

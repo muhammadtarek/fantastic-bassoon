@@ -59,11 +59,12 @@ const PriceField: IField<ITextFieldProps> = {
 function UpsertCarForm() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const { errorMessage, errors, isLoading }: IFormStoreProps = useSelector(
+  const { errorMessage, errors, isLoading, isUpserted }: IFormStoreProps & IUpsertCarStore = useSelector(
     ({ upsertCar: upsertCartStore }: { upsertCar: IUpsertCarStore }) => ({
       errorMessage: upsertCartStore.message,
       isLoading: upsertCartStore.isLoading,
       errors: upsertCartStore.errors,
+      isUpserted: upsertCartStore.isUpserted,
     }),
   );
 
@@ -74,8 +75,11 @@ function UpsertCarForm() {
   ];
 
   useEffect(() => {
-    dispatch(resetCarForm());
-  }, []);
+    if (isUpserted) {
+      history.push(Constants.LISTINGS);
+      dispatch(resetCarForm());
+    }
+  }, [isUpserted]);
 
   return (
     <Stack tokens={{ maxWidth: '375px' }}>

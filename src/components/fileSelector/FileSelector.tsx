@@ -47,6 +47,7 @@ function FileSelector(props: IFileSelectorProps) {
 
       const imagesAsBas64 = files.map((file: any) => file.data);
       setImages(imagesAsBas64);
+      console.log(imagesAsBas64);
       if (onFileSelect) {
         onFileSelect(imagesAsBas64);
       }

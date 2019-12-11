@@ -6,6 +6,7 @@ const initialState: IUpsertCarStore = {
   message: '',
   errors: {},
   isLoading: false,
+  isUpserted: false,
 };
 
 export default (state: IUpsertCarStore = initialState, action: IAction<IUpsertCarPayload>): IUpsertCarStore => {
@@ -22,6 +23,7 @@ export default (state: IUpsertCarStore = initialState, action: IAction<IUpsertCa
         ...state,
         isLoading: false,
         car: action.payload.car,
+        isUpserted: true,
       };
     }
 
