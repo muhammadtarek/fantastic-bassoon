@@ -1,11 +1,13 @@
 import UserType from 'store/types/User';
-import { LISTINGS, CONTROL_CAR, RENT_CAR } from './Constants';
+import { LISTINGS, CONTROL_CAR, RENT_CAR, ADD_CAR, EDIT_CARD } from './Constants';
 
 const permissions: Map<string | string[], UserType[]> = new Map();
 
 permissions.set(LISTINGS, [UserType.normal, UserType.admin]);
 
 permissions.set(CONTROL_CAR, [UserType.admin]);
+permissions.set(ADD_CAR, [UserType.admin]);
+permissions.set(EDIT_CARD, [UserType.admin]);
 permissions.set(RENT_CAR, [UserType.normal]);
 
 /**

@@ -25,6 +25,7 @@ export default {
     header: 'Car listings',
     subheading: 'Test',
     empty: 'No cars are available',
+    create: 'Add new car',
     car: {
       name: 'Name',
       color: 'Color:',
@@ -37,6 +38,19 @@ export default {
     logout: 'Logout',
     name: 'Name',
     admin: 'Admin',
+  },
+  upsertCar: {
+    insertHeading: 'Add a new car',
+    updatedHeading: 'Update car details',
+    helpText: 'More details information will help users to find their needs faster',
+    images: 'Upload images',
+    upload: 'Upload...',
+    name: 'Name',
+    desc: 'Description',
+    price: 'Price per hour',
+    color: 'Color',
+    submit: 'Save changes',
+    cancel: 'Cancel',
   },
   hideDialog: 'Close',
 };

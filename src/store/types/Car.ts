@@ -12,6 +12,14 @@ export interface ICarsStore extends IBaseState<{}> {
   cars: ICar[];
 }
 
+export interface IUpsertCarStore extends IBaseState<{}> {
+  car?: ICar;
+}
+
 export interface ICarsPayload extends IError<{}> {
   cars: ICar[];
+}
+
+export interface IUpsertCarPayload extends IError<{}> {
+  car?: ICar;
 }
