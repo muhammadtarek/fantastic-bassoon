@@ -10,7 +10,7 @@ function PermissionFlag({ permissionKey, userType, children }: IPermissionFlagPr
 }
 
 const mapStateToProps = ({ user }: { user: IUserStore }) => ({
-  userType: user.type,
+  userType: user.userType,
 });
 
 export default connect(mapStateToProps)(PermissionFlag);

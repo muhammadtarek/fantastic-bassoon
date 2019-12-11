@@ -7,6 +7,8 @@ const middleware = (schema, property) => {
         result.error.details.forEach(function(detail) {
             errors[detail.path[0]]=detail.message.split("\"")[2];
         });
+        console.log(errors);
+
         return res.status(422).json({data : req.body , message : "Invalid request" , errors : errors});
   } else { 
     next();   

@@ -72,7 +72,7 @@ class Api {
     headersConfig.append('Access-Control-Allow-Origin', '*');
 
     if (token) {
-      headersConfig.append('Authorization', `Bearer ${token}`);
+      headersConfig.append('x-auth-token', token);
     }
 
     // Setup fetch request config, we pascalize object keys due to C# naming convention
@@ -85,10 +85,7 @@ class Api {
     // Wait for the API response
     // process.env.REACT_APP_BASE_URL can be found in /env/.env.{env}
     const response: Response = await fetch(`${getBaseUrl()}/api/${url}`, config);
-    console.log(response);
     const jsonResponse = await response.json();
-
-    console.log(jsonResponse);
 
     const apiResponse: IApiResponse = {
       status: response.status,

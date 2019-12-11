@@ -7,7 +7,12 @@ exports.createUser = async function(req,res){
     if (user)  return res.status(400).json({data : null, message : "Email already registered" , errors : null});
      user = await userModel.findOne({username: req.body.username});
     if (user)  return res.status(400).json({data : null, message : "Username already exists" , errors : null});
-    
+
+    let userImagePath = "";
+    try {
+        userImagePath = req.file.path;
+    } catch (ex) {console.log('user didn\'t upload image')}
+
      user = new userModel({
         name: req.body.name,
         email: req.body.email,
@@ -15,7 +20,7 @@ exports.createUser = async function(req,res){
         password: req.body.password,
         phone: req.body. phone,
         address: req.body.address,
-        photo: req.body.photo,
+        photo: userImagePath,
         userType: req.body.userType,
     });
     const salt = await bcrypt.genSalt(10);
@@ -23,7 +28,7 @@ exports.createUser = async function(req,res){
     user.password = hasedPassword;
    await user.save();
    const token = user.generateAuthToken();
-   return res.header('x-auth-token',token).status(200).json({data : user, message : null , errors : null});
+   return res.status(200).json({data : token, message : null , errors : null});
 }
 
 exports.retrieveAllUsers = async function(req,res){

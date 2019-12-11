@@ -6,7 +6,7 @@ enum UserType {
 }
 
 export interface IUser {
-  _id: string;
+  id: string;
   name: string;
   email: string;
   username: string;
@@ -14,7 +14,7 @@ export interface IUser {
   phone: string;
   address: string;
   photo: string;
-  type: UserType;
+  userType: UserType;
 }
 
 export interface IUserStore extends IUser, IBaseState<{}> {

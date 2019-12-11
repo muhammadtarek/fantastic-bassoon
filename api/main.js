@@ -2,7 +2,7 @@ const http = require('http');
 const cors = require('cors');
 
 const hostname = '127.0.0.1';
-const port = process.env.port || 3000;
+const port = process.env.port || 3006;
 
 const express = require('express');
 
@@ -21,7 +21,7 @@ mongoose
     console.log('Not Connected to Database ERROR! ', err);
   });
 
-const reservationRouter = require('./routes/reservationRoute');
+// const reservationRouter = require('./routes/reservationRoute');
 // const reservationRouter = require('./routes/reservationRoute');
 const userRouter = require('./routes/userRoute');
 const authRouter = require('./routes/authRoute');

@@ -8,7 +8,7 @@ exports.login = async function(req,res){
 
     const validPassword = await bcrypt.compare(req.body.password,user.password);
     if (!validPassword)  return res.status(400).json({data : null, message : "Invalid email or password" , errors : null});
-    
+
     const token = user.generateAuthToken();
-   return res.header('x-auth-token',token).status(200).json({data : user, message : null , errors : null});
+   return res.status(200).json({data: token, message : null , errors : null});
 }

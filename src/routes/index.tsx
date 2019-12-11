@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Switch, Redirect, Route } from 'react-router-dom';
+import { withRouter, Switch, Redirect, Route, useHistory } from 'react-router-dom';
 import { compose } from 'redux';
 import { Spinner, Stack, SpinnerSize } from 'office-ui-fabric-react';
 import Cookies from 'js-cookie';
@@ -18,13 +18,13 @@ interface IAuthLayoutProps {
   userType: UserType;
   name: string;
   isLoggedIn: boolean;
-  history: Record<string, any>;
   logout: Function;
   authenticate: Function;
 }
 
 function AuthLayout(props: IAuthLayoutProps) {
-  const { isLoggedIn, userType, name, history, authenticate, logout } = props;
+  const { isLoggedIn, userType, name, authenticate, logout } = props;
+  const history = useHistory();
   const routesComponents = [];
 
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -60,7 +60,8 @@ function AuthLayout(props: IAuthLayoutProps) {
         <Header
           navItems={filterContextualMenuItems(userType, getCommandBarItems(history))}
           farItems={getFarCommandBarItems(history, logout)}
-          userDesc={name}
+          name={name}
+          isAdmin={userType === UserType.admin}
         />
       )}
 
@@ -81,7 +82,7 @@ function AuthLayout(props: IAuthLayoutProps) {
 }
 
 const mapStateToProps = ({ user }: { user: IUserStore }) => ({
-  userType: user.type,
+  userType: user.userType,
   name: user.name,
   isLoggedIn: user.isLoggedIn,
 });
