@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { isFeatureAuthorized, isFeatureEnabled } from 'utils';
+import { isFeatureAuthorized, isFeatureEnabled, Constants } from 'utils';
 import { IUserStore } from 'store/types';
 import IAuthRouteProps from './AuthRoute.types';
 
@@ -20,7 +20,7 @@ function AuthRoute(props: IAuthRouteProps) {
         }
 
         // If not, we show that the user is not authorized
-        return <h1>not auth</h1>;
+        return <Redirect to={Constants.LISTINGS} />;
       }
     }
   } else {
