@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import logo from 'assets/logo.png';
 import { Text, Caption } from 'components/text';
-import { Colors } from 'utils';
+import { Colors, Constants } from 'utils';
 import Locale from 'localization';
 import IHeaderProps from './Header.types';
 import './FullWidth.css';
@@ -71,7 +71,7 @@ function Header(props: IHeaderProps) {
       <HeaderStyled>
         <Stack horizontal verticalAlign="center">
           <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 10 }} disableShrink style={{ flexShrink: 0 }}>
-            <LogoContainer to="listings">
+            <LogoContainer to={Constants.LISTINGS}>
               <Stack
                 horizontal
                 verticalAlign="center"
