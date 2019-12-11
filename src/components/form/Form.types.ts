@@ -7,6 +7,7 @@ export enum FieldType {
   choiceGroup,
   datePicker,
   fileSelector,
+  colorPicker,
 }
 
 export interface IField<T = any> {
@@ -14,7 +15,7 @@ export interface IField<T = any> {
   errorMessage?: string;
   type: FieldType;
   itemKey: string;
-  props: T;
+  props?: T;
 }
 
 export interface IFieldsStack extends IStackProps {
