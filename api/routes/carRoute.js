@@ -24,12 +24,12 @@ router.get('/',auth, car_controller.list_cars);
 router.get('/:id',auth, car_controller.car_details);
 
 // Post request for creating new car
-router.post('/',[upload.array('images'), auth], car_controller.car_creat);
+router.post('/',[upload.array('images'), auth,admin], car_controller.car_creat);
 
 // Put request for editing existing car
 router.put('/:id',admin, car_controller.car_update);
 
-// Delete request for deleting existing car
+// Delete request for deleting existing car 
 router.delete('/:id',admin, car_controller.car_delete);
 
 module.exports = router;
