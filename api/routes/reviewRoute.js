@@ -2,12 +2,12 @@ var express = require('express');
 var router = express.Router();
 
 
-var reservController = require('../controllers/reviewContoller');
+var reviewController = require('../controllers/reviewController');
 const middleware = require('./middleware/validation'); 
 const auth = require('../routes/middleware/auth');
 
 
-router.post('/',auth,reservController.createReview);
+router.post('/',auth,reviewController.createReview);
 
 
 module.exports = router;

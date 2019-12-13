@@ -33,7 +33,9 @@ exports.list_cars = async function (req, res) {
 // Display specific car details
 exports.car_details = async function (req, res) {
     try {
-        const car = await Car.findById(req.params.id).populate('reviews');
+        const car = await Car.findById(req.params.id).populate({
+            path: 'reviews',
+            populate: { path: 'userId' }});
         if(!car)
             return res.status(404).send(response(req.params.id, 'Car not found', null));
 

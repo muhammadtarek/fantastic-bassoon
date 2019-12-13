@@ -30,7 +30,6 @@ const carSchema = new mongoose.Schema({
     },
     reviews : [{
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
         ref: "review"
     }],
 
