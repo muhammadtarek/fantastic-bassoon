@@ -15,6 +15,7 @@ const NameField: IField<ITextFieldProps> = {
   props: {
     label: Locale.landing.signup.name,
     required: true,
+    iconProps: { iconName: 'ReminderPerson' },
   },
 };
 
@@ -24,6 +25,7 @@ const EmailField: IField<ITextFieldProps> = {
   props: {
     label: Locale.landing.signup.email,
     required: true,
+    iconProps: { iconName: 'Mail' },
   },
 };
 
@@ -34,6 +36,7 @@ const PasswordField: IField<ITextFieldProps> = {
     label: Locale.landing.signup.password,
     type: 'password',
     required: true,
+    iconProps: { iconName: 'PasswordField' },
   },
 };
 
@@ -43,6 +46,7 @@ const UsernameField: IField<ITextFieldProps> = {
   props: {
     label: Locale.landing.signup.username,
     required: true,
+    iconProps: { iconName: 'Accounts' },
   },
 };
 
@@ -52,6 +56,7 @@ const PhoneNumberField: IField<ITextFieldProps> = {
   props: {
     label: Locale.landing.signup.phoneNumber,
     required: true,
+    iconProps: { iconName: 'Phone' },
   },
 };
 
@@ -82,7 +87,7 @@ function SignupForm() {
         buttonText={Locale.landing.signup.cta}
         fieldsStacks={fields}
       />
-      <Stack padding={20} horizontalAlign="center">
+      <Stack tokens={{ padding: 20 }} horizontalAlign="center">
         <Link>
           <RouterLink to="/login">{Locale.landing.signup.goToLogin}</RouterLink>
         </Link>

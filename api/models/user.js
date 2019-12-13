@@ -13,7 +13,7 @@ userType: {type: Number, required : false , default :0},
 });
 
 schema.methods.generateAuthToken = function () {
-    const token = jwt.sign({_id: this._id,username : this.username,email : this.email,
+    const token = jwt.sign({_id: this._id,username : this.username,name: this.name, email : this.email,
         phone : this.phone,address : this.address,photo : this.photo,
         userType : this.userType},'jwtPrivateKey');
     return token;

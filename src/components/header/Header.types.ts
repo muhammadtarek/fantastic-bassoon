@@ -1,7 +1,8 @@
 import { ICommandBarItemProps } from 'office-ui-fabric-react';
 
 export default interface IHeaderProps {
-  userDesc: string;
+  name: string;
+  isAdmin: boolean;
   navItems: ICommandBarItemProps[];
   farItems: ICommandBarItemProps[];
 }

@@ -15,10 +15,12 @@ import {
   IComboBoxProps,
   IChoiceGroupOption,
   IChoiceGroupProps,
+  ColorPicker,
 } from 'office-ui-fabric-react';
 
-import FileSelector from 'components/fileSelector';
 import { DateHelpers } from 'utils';
+import FileSelector from '../fileSelector';
+import Text from '../text';
 import { IFormProps, IFieldsStack, IField, FieldType, IFormValidation } from './Form.types';
 import { validateAllFields, validateField } from './Form.utils';
 
@@ -146,7 +148,33 @@ function renderFields({
       }
 
       case FieldType.fileSelector: {
-        return <FileSelector key={`${label}`} disabled={shouldDisable} label={label} {...props} />;
+        return (
+          <Stack>
+            <Text style={{ fontWeight: 600 }}>{label}</Text>
+            <FileSelector
+              key={`${label}`}
+              disabled={shouldDisable}
+              label={label}
+              onFileSelect={(value: string[]) => setItem(itemKey, value)}
+              {...props}
+            />
+          </Stack>
+        );
+      }
+
+      case FieldType.colorPicker: {
+        return (
+          <Stack>
+            <Text style={{ fontWeight: 600 }}>{label}</Text>
+            <ColorPicker
+              key={`${label}`}
+              disabled={shouldDisable}
+              label={label}
+              onChange={(_, color: string) => setItem(itemKey, color)}
+              {...props}
+            />
+          </Stack>
+        );
       }
 
       default: {
@@ -202,8 +230,6 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
     return fieldsStacks.map(group => group.fields).flat();
   }, [fieldsStacks]);
 
-  console.log(errors);
-
   const [_errors, setErrors] = useState(errors || {});
   const [_errorMessage, setErrorMessage] = useState(errorMessage);
   const [tempData, setTempData] = useState({ ...data });
@@ -256,6 +282,7 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
         setErrorMessage(externalValidationResults.errorMessage);
       }
     } else if (action) {
+      console.log(tempData);
       action(tempData);
     }
   }
@@ -275,9 +302,6 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
   const messageBarStyles = () => ({
     root: {
       maxWidth: '300px',
-    },
-    icon: {
-      lineHeight: '13px',
     },
   });
 

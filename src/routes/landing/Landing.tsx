@@ -1,9 +1,12 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { Image, Stack } from 'office-ui-fabric-react';
 import styled from 'styled-components';
 import BG from 'assets/bg.png';
 import Logo from 'assets/logo.png';
+import { useSelector } from 'react-redux';
+import { IUserStore } from 'store/types';
+import { Constants } from 'utils';
 import Signup from './Signup.form';
 import Login from './Login.form';
 
@@ -14,7 +17,13 @@ const Container = styled.div`
 `;
 
 function LandingPage() {
-  return (
+  const { isLoggedIn } = useSelector(({ user }: { user: IUserStore }) => ({
+    isLoggedIn: user.isLoggedIn,
+  }));
+
+  return isLoggedIn ? (
+    <Redirect to={Constants.LISTINGS} />
+  ) : (
     <Container>
       <Stack horizontal horizontalAlign="center">
         <Stack verticalAlign="center" horizontalAlign="center" grow={3}>

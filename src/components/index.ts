@@ -10,6 +10,8 @@ import PageContainer from './pageContainer';
 import PermissionFlag from './permissionFlag';
 import StackContainer from './stackContainer';
 import Text, { Caption, Heading, SubHeading, Title, MegaTitle } from './text';
+import CarCard from './carCard';
+import ImagePreview from './imagePreview';
 
 export {
   AuthRoute,
@@ -29,6 +31,8 @@ export {
   SubHeading,
   Title,
   MegaTitle,
+  CarCard,
+  ImagePreview,
 };
 export * from './form/Form.types';
 export * from './dialog/Dialog.types';

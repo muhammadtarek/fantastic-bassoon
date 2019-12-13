@@ -2,18 +2,18 @@ import { decode } from 'jsonwebtoken';
 import { camelizeKeys } from 'humps';
 
 import { IUserStore, IAction, IUserPayload } from 'store/types';
-import { Actions, UserActions } from 'store/actions';
+import { UserActions } from 'store/actions';
 import UserType, { IUser } from 'store/types/User';
 
 const initialState: IUserStore = {
-  _id: '',
+  id: '',
   address: '',
   email: '',
   name: '',
   phone: '',
   username: '',
   photo: '',
-  type: UserType.normal,
+  userType: UserType.normal,
   isLoading: false,
   isLoggedIn: false,
   message: '',
@@ -33,17 +33,18 @@ export default (state: IUserStore = initialState, action: IAction<IUserPayload>)
     case UserActions.success:
     case UserActions.authenticate: {
       const { token } = action.payload;
-      const { _id, address, email, name, phone, photo, type, username } = camelizeKeys(decode(token) || {}) as IUser;
+      const user = camelizeKeys(decode(token) || {}) as IUser;
+      const { id, address, email, name, phone, photo, userType, username } = user;
 
       return {
         ...state,
-        _id,
+        id,
         address,
         email,
         name,
         phone,
         photo,
-        type,
+        userType,
         username,
         isLoading: false,
         isLoggedIn: true,

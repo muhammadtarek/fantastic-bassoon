@@ -1,0 +1,33 @@
+import { IError, ICar } from 'store/types';
+import action from './base';
+
+export enum CarsActions {
+  request = 'cars_request',
+  success = 'cars_success',
+  failure = 'cars_failure',
+}
+
+export enum UpsertCarsActions {
+  reset = 'upsertCars_reset',
+  request = 'upsertCars_request',
+  success = 'upsertCars_success',
+  failure = 'upsertCars_failure',
+}
+
+export const carsActions = {
+  request: () => action(CarsActions.request),
+  success: (cars: ICar[]) => action(CarsActions.success, { cars }),
+  failure: ({ message, errors }: IError<ICar>) => action(CarsActions.failure, { message, errors }),
+};
+
+export const upsertCarsAction = {
+  rest: () => action(UpsertCarsActions.reset),
+  request: (car: ICar) => action(UpsertCarsActions.request, { car }),
+  success: () => action(UpsertCarsActions.success),
+  failure: ({ message, errors }: IError<ICar>) => action(UpsertCarsActions.failure, { message, errors }),
+};
+
+export const getAllCars = carsActions.request;
+export const resetCarForm = upsertCarsAction.rest;
+export const upsertCar = upsertCarsAction.request;
+export default carsActions;

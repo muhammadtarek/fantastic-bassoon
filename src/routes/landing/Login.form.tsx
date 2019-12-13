@@ -15,6 +15,7 @@ const EmailField: IField<ITextFieldProps> = {
   props: {
     label: Locale.landing.login.email,
     required: true,
+    iconProps: { iconName: 'Mail' },
   },
 };
 
@@ -25,6 +26,7 @@ const PasswordField: IField<ITextFieldProps> = {
     label: Locale.landing.login.password,
     type: 'password',
     required: true,
+    iconProps: { iconName: 'PasswordField' },
   },
 };
 
@@ -59,7 +61,7 @@ function LoginForm() {
         buttonText={Locale.landing.login.cta}
         fieldsStacks={fields}
       />
-      <Stack padding={20} horizontalAlign="center">
+      <Stack tokens={{ padding: 20 }} horizontalAlign="center">
         <Link>
           <RouterLink to="/signup">{Locale.landing.login.goToSignup}</RouterLink>
         </Link>
