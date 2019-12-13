@@ -28,7 +28,12 @@ const carSchema = new mongoose.Schema({
         required: true,
         default: 'no description'
     },
-    
+    reviews : [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "review"
+    }],
+
 });
 
 const Car = mongoose.model('Car', carSchema);
