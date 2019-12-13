@@ -28,6 +28,7 @@ const carSchema = new mongoose.Schema({
         required: true,
         default: 'no description'
     },
+    
 });
 
 const Car = mongoose.model('Car', carSchema);
