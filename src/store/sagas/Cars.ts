@@ -1,6 +1,6 @@
 import { Api, Urls } from 'utils';
 import { IAction, ICarsPayload, IUpsertCarPayload } from 'store/types';
-import { carsActions, upsertCarsAction } from 'store/actions';
+import { carsActions, upsertCarsActions } from 'store/actions';
 import CarFormMode from 'store/types/Car';
 import fetchEntity from './base';
 
@@ -8,7 +8,7 @@ export const getAll = (action: IAction<ICarsPayload>) => fetchEntity(carsActions
 
 export const upsertCar = (action: IAction<IUpsertCarPayload>) =>
   fetchEntity(
-    upsertCarsAction,
+    upsertCarsActions,
     () => {
       switch (action.payload.mode) {
         case CarFormMode.insert: {

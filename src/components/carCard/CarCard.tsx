@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import { Icon, Stack, IIconStyles, FontWeights, Image, PrimaryButton } from 'office-ui-fabric-react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
@@ -19,6 +20,7 @@ function CarCard({
   price,
   onDelete = () => {},
   onEdit = () => {},
+  onRent = () => {},
 }: ICarCardProps) {
   const [selectedImagePreview, setSelectedImagePreview] = useState();
 
@@ -56,7 +58,7 @@ function CarCard({
         <Stack horizontal tokens={{ childrenGap: 5 }} wrap>
           {images.map((image: string, index: number) => (
             <ImagePreview
-              key={image}
+              key={`${id}-${index}`}
               isSelected={index === selectedImagePreview}
               onClick={() => setSelectedImagePreview(index)}
               src={image}
@@ -88,7 +90,7 @@ function CarCard({
         </PermissionFlag>
 
         <PermissionFlag permissionKey={RENT_CAR}>
-          <PrimaryButton>{Locale.listings.car.rent}</PrimaryButton>
+          <PrimaryButton onClick={() => onRent(id)}>{Locale.listings.car.rent}</PrimaryButton>
         </PermissionFlag>
       </Card.Section>
     </Card>

@@ -21,7 +21,7 @@ export const carsActions = {
   failure: ({ message, errors }: IError<ICar>) => action(CarsActions.failure, { message, errors }),
 };
 
-export const upsertCarsAction = {
+export const upsertCarsActions = {
   rest: () => action(UpsertCarsActions.reset),
   request: (car: ICar, mode: CarFormMode) => action(UpsertCarsActions.request, { car, mode }),
   success: () => action(UpsertCarsActions.success),
@@ -29,6 +29,6 @@ export const upsertCarsAction = {
 };
 
 export const getAllCars = carsActions.request;
-export const resetCarForm = upsertCarsAction.rest;
-export const upsertCar = upsertCarsAction.request;
+export const resetCarForm = upsertCarsActions.rest;
+export const upsertCar = upsertCarsActions.request;
 export default carsActions;

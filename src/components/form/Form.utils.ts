@@ -9,7 +9,7 @@ export function validateField({
 }: {
   value?: string;
   label?: string;
-  regex?: string;
+  regex?: RegExp;
   errorMessage?: string;
   isRequired?: boolean;
 } = {}): string | undefined {
@@ -19,7 +19,7 @@ export function validateField({
     }
   }
 
-  if (regex && !value.match(regex)) {
+  if (regex && !regex.test(value)) {
     return errorMessage;
   }
 

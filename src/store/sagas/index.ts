@@ -1,8 +1,9 @@
 import { takeLatest } from 'redux-saga/effects';
 
-import { UserActions, CarsActions, UpsertCarsActions } from 'store/actions';
+import { UserActions, CarsActions, UpsertCarsActions, UpsertRentActions, RentsActions } from 'store/actions';
 import { saveToken, removeToken, loginUser, signupUser } from './User';
 import { getAll, upsertCar } from './Cars';
+import { getAllRents, upsertRent } from './Rents';
 
 export default function* root() {
   yield takeLatest(UserActions.login, loginUser);
@@ -13,4 +14,7 @@ export default function* root() {
   yield takeLatest(CarsActions.request, getAll);
   yield takeLatest(UpsertCarsActions.success, getAll);
   yield takeLatest(UpsertCarsActions.request, upsertCar);
+  yield takeLatest(RentsActions.request, getAllRents);
+  yield takeLatest(UpsertRentActions.success, getAllRents);
+  yield takeLatest(UpsertRentActions.request, upsertRent);
 }

@@ -31,6 +31,10 @@ function Listings() {
     history.push(`${Constants.LISTINGS}/delete/${id}`);
   }
 
+  function onCarRent(id: string) {
+    history.push(`/rent/${id}`);
+  }
+
   return (
     <>
       <PageContainer>
@@ -52,7 +56,7 @@ function Listings() {
         >
           <Stack styles={{ root: { marginTop: '20px' } }} horizontal wrap tokens={{ childrenGap: 10 }}>
             {carsList.map((car: ICar) => (
-              <CarCard key={car.id} onDelete={onCarDelete} onEdit={onCarEdit} {...car} />
+              <CarCard key={car.id} onRent={onCarRent} onDelete={onCarDelete} onEdit={onCarEdit} {...car} />
             ))}
           </Stack>
         </DataViewer>
