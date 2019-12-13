@@ -8,6 +8,11 @@ const reviewSchema = new mongoose.Schema({
         min:3,
         max:255
     },
+    carId:{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "car"
+    },
    
     userId: {
         type: mongoose.Schema.Types.ObjectId,

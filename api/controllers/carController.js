@@ -33,7 +33,7 @@ exports.list_cars = async function (req, res) {
 // Display specific car details
 exports.car_details = async function (req, res) {
     try {
-        const car = await Car.findById(req.params.id);
+        const car = await Car.findById(req.params.id).populate('reviews');
         if(!car)
             return res.status(404).send(response(req.params.id, 'Car not found', null));
 
