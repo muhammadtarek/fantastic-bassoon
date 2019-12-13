@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Title, PageContainer, SubHeading, CarCard, DataViewer, PermissionFlag, AuthRoute } from 'components';
+import { Title, PageContainer, SubHeading, CarCard, DataViewer, PermissionFlag, AuthRoute, Dialog } from 'components';
 import Locale from 'localization';
 import { Colors, Constants } from 'utils';
 import { Stack, PrimaryButton } from 'office-ui-fabric-react';
@@ -8,6 +8,21 @@ import { ICarsStore, ICar } from 'store/types';
 import { getAllCars } from 'store/actions';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import UpsertCar from 'routes/upsertCar';
+
+function DeleteCar() {
+  return (
+    <Dialog
+      mainAction={() => {}}
+      isLoading={false}
+      show
+      dialogKey="delete_car"
+      title="Delete"
+      mainActionText="Confirmt"
+      isAlert
+      hideDialog={() => {}}
+    />
+  );
+}
 
 function Listings() {
   const history = useHistory();
@@ -21,6 +36,14 @@ function Listings() {
   useEffect(() => {
     dispatch(getAllCars());
   }, []);
+
+  function onCarEdit(id: string) {
+    history.push(`${Constants.LISTINGS}/edit/${id}`);
+  }
+
+  function onCarDelete(id: string) {
+    history.push(`${Constants.LISTINGS}/delete/${id}`);
+  }
 
   return (
     <>
@@ -43,13 +66,15 @@ function Listings() {
         >
           <Stack styles={{ root: { marginTop: '20px' } }} horizontal wrap tokens={{ childrenGap: 10 }}>
             {carsList.map((car: ICar) => (
-              <CarCard key={`${car.name}-${car.price}`} {...car} />
+              <CarCard key={car.id} onDelete={onCarDelete} onEdit={onCarEdit} {...car} />
             ))}
           </Stack>
         </DataViewer>
       </PageContainer>
       <Switch>
         <AuthRoute path={`${Constants.LISTINGS}/new`} component={UpsertCar} />
+        <AuthRoute path={`${Constants.LISTINGS}/edit/:id`} component={UpsertCar} />
+        <AuthRoute path={`${Constants.LISTINGS}/delete/:id`} component={DeleteCar} />
       </Switch>
     </>
   );

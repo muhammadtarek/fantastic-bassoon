@@ -156,6 +156,7 @@ function renderFields({
               disabled={shouldDisable}
               label={label}
               onFileSelect={(value: string[]) => setItem(itemKey, value)}
+              // previewImages={values[itemKey]}
               {...props}
             />
           </Stack>

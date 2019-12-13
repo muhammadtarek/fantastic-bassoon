@@ -13,9 +13,9 @@ const buttonStyles: IButtonStyles = {
 };
 
 function FileSelector(props: IFileSelectorProps) {
-  const { id, onFileSelect } = props;
+  const { id, onFileSelect, previewImages } = props;
   const [isProcessing, setIsProcessing] = useState();
-  const [images, setImages] = useState<string[]>();
+  const [images, setImages] = useState<string[]>(previewImages || []);
 
   const triggerInput = () => {
     const inputRef: HTMLInputElement | null = document.querySelector(`#${id}`);

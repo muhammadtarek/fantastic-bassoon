@@ -1,4 +1,5 @@
 import { IError, ICar } from 'store/types';
+import CarFormMode from 'store/types/Car';
 import action from './base';
 
 export enum CarsActions {
@@ -22,7 +23,7 @@ export const carsActions = {
 
 export const upsertCarsAction = {
   rest: () => action(UpsertCarsActions.reset),
-  request: (car: ICar) => action(UpsertCarsActions.request, { car }),
+  request: (car: ICar, mode: CarFormMode) => action(UpsertCarsActions.request, { car, mode }),
   success: () => action(UpsertCarsActions.success),
   failure: ({ message, errors }: IError<ICar>) => action(UpsertCarsActions.failure, { message, errors }),
 };

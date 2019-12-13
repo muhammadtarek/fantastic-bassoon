@@ -1,3 +1,6 @@
 import { ICar } from 'store/types';
 
-export type ICarCardProps = ICar;
+export interface ICarCardProps extends ICar {
+  onEdit?: (id: string) => void;
+  onDelete?: (id: string) => void;
+}

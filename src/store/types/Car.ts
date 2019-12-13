@@ -1,6 +1,12 @@
 import { IBaseState, IError } from './Redux';
 
+enum CarFormMode {
+  insert,
+  update,
+}
+
 export interface ICar {
+  id: string;
   name: string;
   color: string;
   price: number;
@@ -23,4 +29,7 @@ export interface ICarsPayload extends IError<{}> {
 
 export interface IUpsertCarPayload extends IError<{}> {
   car?: ICar;
+  mode: CarFormMode;
 }
+
+export default CarFormMode;

@@ -3,12 +3,13 @@ import { IFileSelectorProps } from 'components/fileSelector';
 import { FieldType, IField, IFormStoreProps, IFieldsStack, Heading, SubHeading, Form } from 'components';
 import Locale from 'localization';
 import { useDispatch, useSelector } from 'react-redux';
-import { IUpsertCarStore, ICar } from 'store/types';
+import { IUpsertCarStore, ICar, ICarsStore } from 'store/types';
 import Stack from 'office-ui-fabric-react/lib/components/Stack/Stack';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { ITextFieldProps } from 'office-ui-fabric-react';
 import { Colors, Constants } from 'utils';
 import { resetCarForm, upsertCar } from 'store/actions';
+import CarFormMode from 'store/types/Car';
 
 const ImagesField: IField<IFileSelectorProps> = {
   itemKey: 'images',
@@ -57,6 +58,8 @@ const PriceField: IField<ITextFieldProps> = {
 };
 
 function UpsertCarForm() {
+  const { id } = useParams();
+  const car = useSelector(({ cars }: { cars: ICarsStore }) => cars.cars.find((c: ICar) => c.id === id));
   const history = useHistory();
   const dispatch = useDispatch();
   const { errorMessage, errors, isLoading, isUpserted }: IFormStoreProps & IUpsertCarStore = useSelector(
@@ -81,6 +84,8 @@ function UpsertCarForm() {
     }
   }, [isUpserted]);
 
+  const mode = id ? CarFormMode.update : CarFormMode.insert;
+
   return (
     <Stack tokens={{ maxWidth: '375px' }}>
       <Heading>{Locale.upsertCar.insertHeading}</Heading>
@@ -89,10 +94,11 @@ function UpsertCarForm() {
       </SubHeading>
       <Form
         storeProps={{
+          data: car || {},
           errorMessage,
           errors,
           isLoading,
-          action: (data: ICar) => dispatch(upsertCar(data)),
+          action: (data: ICar) => dispatch(upsertCar(data, mode)),
         }}
         id="upsertCar"
         name="upsertCar"

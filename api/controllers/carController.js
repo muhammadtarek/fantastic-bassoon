@@ -124,7 +124,7 @@ exports.car_update = async function (req, res) {
         car.color = (req.body.color) ? req.body.color : car.color;
         car.description = (req.body.description) ? req.body.description : car.description;
         car.price = (req.body.price) ? req.body.price : car.price;
-        car.images = (req.body.images) ? req.body.images : car.images;
+        car.images = (req.body.images) ? uploadImages(req.body.images, car.name) : car.images;
 
         // validate car before updating data
         const {error} = validateCar(car);
