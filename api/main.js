@@ -28,6 +28,7 @@ const authRouter = require('./routes/authRoute');
 
 const reservationRouter = require('./routes/reservationRoute');
 const carRouter = require('./routes/carRoute');
+const reviewRouter = require('./routes/reviewRoute');
 
 app.use(cors())
 
@@ -41,6 +42,7 @@ app.use('/api/auth',authRouter);
 app.use('/api/user',userRouter);
 app.use('/api/reservation',reservationRouter);
 app.use('/api/cars', carRouter);
+app.use('/api/review', reviewRouter);
 
 app.listen(port, hostname, err => {
   console.log(`Server running at http://${hostname}:${port}/`);
