@@ -3,6 +3,7 @@ import { IBaseState, IError } from './Redux';
 enum CarFormMode {
   insert,
   update,
+  delete,
 }
 
 export interface ICar {

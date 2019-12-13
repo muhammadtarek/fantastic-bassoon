@@ -1,28 +1,14 @@
 import React, { useEffect } from 'react';
-import { Title, PageContainer, SubHeading, CarCard, DataViewer, PermissionFlag, AuthRoute, Dialog } from 'components';
+import { Title, PageContainer, SubHeading, CarCard, DataViewer, PermissionFlag, AuthRoute } from 'components';
 import Locale from 'localization';
 import { Colors, Constants } from 'utils';
 import { Stack, PrimaryButton } from 'office-ui-fabric-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ICarsStore, ICar } from 'store/types';
 import { getAllCars } from 'store/actions';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, useHistory } from 'react-router-dom';
 import UpsertCar from 'routes/upsertCar';
-
-function DeleteCar() {
-  return (
-    <Dialog
-      mainAction={() => {}}
-      isLoading={false}
-      show
-      dialogKey="delete_car"
-      title="Delete"
-      mainActionText="Confirmt"
-      isAlert
-      hideDialog={() => {}}
-    />
-  );
-}
+import DeleteCar from 'routes/deleteCar';
 
 function Listings() {
   const history = useHistory();

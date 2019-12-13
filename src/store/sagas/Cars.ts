@@ -10,12 +10,27 @@ export const upsertCar = (action: IAction<IUpsertCarPayload>) =>
   fetchEntity(
     upsertCarsAction,
     () => {
-      if (action.payload.mode === CarFormMode.insert) {
-        return Api.post(Urls.cars, action.payload.car);
+      switch (action.payload.mode) {
+        case CarFormMode.insert: {
+          return Api.post(Urls.cars, action.payload.car);
+        }
+
+        case CarFormMode.update: {
+          // @ts-ignore
+          return Api.put(`${Urls.cars}/${action.payload.car.id}`, action.payload.car);
+        }
+
+        case CarFormMode.delete: {
+          // @ts-ignore
+          return Api.delete(`${Urls.cars}/${action.payload.car.id}`);
+        }
+
+        default: {
+          break;
+        }
       }
 
-      // @ts-ignore
-      return Api.put(`${Urls.cars}/${action.payload.car.id}`, action.payload.car);
+      return () => {};
     },
     action,
   );

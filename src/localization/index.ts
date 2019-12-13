@@ -30,6 +30,7 @@ export default {
       name: 'Name',
       color: 'Color:',
       rent: 'Rent',
+      price: 'Price:',
     },
   },
   header: {
@@ -51,6 +52,10 @@ export default {
     color: 'Color',
     submit: 'Save changes',
     cancel: 'Cancel',
+  },
+  deleteCar: {
+    title: 'Are you sure to delete this car?',
+    confirm: 'Delete',
   },
   hideDialog: 'Close',
 };
