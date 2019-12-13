@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import React, { useEffect } from 'react';
-import { Dialog, IFormStoreProps, Text, ImagePreview, Heading, Caption } from 'components';
+import { Dialog, IFormStoreProps, Text, ImagePreview, Heading } from 'components';
 import { useHistory, useParams } from 'react-router-dom';
 import { IUpsertCarStore, ICarsStore, ICar } from 'store/types';
 import { useDispatch, useSelector } from 'react-redux';
@@ -37,7 +37,7 @@ function DeleteCar() {
   return (
     <Dialog
       mainAction={() => dispatch(upsertCar(car, CarFormMode.delete))}
-      isLoading={false}
+      isLoading={isLoading}
       show
       dialogKey="delete_car"
       title={Locale.deleteCar.title}

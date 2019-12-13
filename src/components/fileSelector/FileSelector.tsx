@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { DefaultButton, IButtonStyles, Stack, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 
-import Text from 'components/text';
 import ImagePreview from 'components/imagePreview';
 import { IFileSelectorProps } from './FileSelector.types';
 
@@ -27,7 +26,7 @@ function FileSelector(props: IFileSelectorProps) {
   };
 
   const readAsDataURL = (file: any) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const fileReader = new FileReader();
       fileReader.onload = () => {
         return resolve({ data: fileReader.result, name: file.name, size: file.size, type: file.type });
