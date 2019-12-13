@@ -17,7 +17,7 @@ function isURL(str: string) {
 }
 
 function renderImage(image: string) {
-  return isURL(image) ? image : `data:image/gif;base64,${image}`;
+  return isURL(image) ? `http://localhost:3006/${image}` : `data:image/gif;base64,${image}`;
 }
 
 function CarCard({ color, description, images, name, price }: ICarCardProps) {
@@ -51,7 +51,11 @@ function CarCard({ color, description, images, name, price }: ICarCardProps) {
   return (
     <Card onClick={() => {}} tokens={cardTokens}>
       <Card.Section fill verticalAlign="end" styles={backgroundImageCardSectionStyles}>
-        <Image src={renderImage(images[selectedImagePreview])} width="100%" />
+        <Image
+          styles={{ image: { objectFit: 'cover' } }}
+          src={renderImage(images[selectedImagePreview])}
+          width="100%"
+        />
       </Card.Section>
       <Card.Section>
         <Stack horizontal tokens={{ childrenGap: 5 }}>

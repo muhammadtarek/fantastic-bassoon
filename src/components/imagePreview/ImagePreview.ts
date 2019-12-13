@@ -11,6 +11,7 @@ const ImagePreview = styled.img<IImagePreviewProp>`
   min-width: ${props => props.radius || radius};
   border-radius: 4px;
   border: 1px solid ${props => (props.isSelected ? Colors.themeDarker : Colors.neutralTertiary)};
+  object-fit: cover;
 `;
 
 export default ImagePreview;
