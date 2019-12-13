@@ -47,7 +47,6 @@ function FileSelector(props: IFileSelectorProps) {
 
       const imagesAsBas64 = files.map((file: any) => file.data);
       setImages(imagesAsBas64);
-      console.log(imagesAsBas64);
       if (onFileSelect) {
         onFileSelect(imagesAsBas64);
       }
@@ -63,7 +62,7 @@ function FileSelector(props: IFileSelectorProps) {
       {images && images.length === 0 && isProcessing ? (
         <Spinner size={SpinnerSize.large} />
       ) : (
-        <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 5 }}>
+        <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 5 }} wrap>
           {images && images.map((image: string) => <ImagePreview key={image} radius="50px" src={image} />)}
         </Stack>
       )}

@@ -58,7 +58,7 @@ function CarCard({ color, description, images, name, price }: ICarCardProps) {
         />
       </Card.Section>
       <Card.Section>
-        <Stack horizontal tokens={{ childrenGap: 5 }}>
+        <Stack horizontal tokens={{ childrenGap: 5 }} wrap>
           {images.map((image: string, index: number) => (
             <ImagePreview
               key={image}
