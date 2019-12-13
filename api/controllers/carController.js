@@ -92,7 +92,7 @@ function uploadImages(base64Images, carName) {
 
             // Save image on server
             fs.writeFileSync("./car-images/" + fileName, imageBuffer, 'utf8');
-            images.push("./api/car-images/"+ fileName);
+            images.push("api/car-images/"+ fileName);
         });
     } catch (ex) {
         console.log('Something faild');
