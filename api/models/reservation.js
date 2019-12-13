@@ -20,6 +20,5 @@ let reservationSchema = new mongoose.Schema({
       ref: "Car"
     }
   })
-
 const reservation = mongoose.model("reservation", reservationSchema);
 module.exports = reservation;

@@ -52,18 +52,7 @@ exports.car_creat = async function (req, res) {
             const errors = get_errors(error);
             return res.status(400).send(response(req.body, 'Please enter valid data', errors))
         }
-<<<<<<< HEAD
      
-=======
-
-        const images = [];
-        if(req.files) {
-
-            req.files.forEach(image => {
-                images.push(image.path);
-            });
-        }
->>>>>>> origin/master
         let car = new Car ({
             name: req.body.name,
             color: req.body.color,
@@ -72,13 +61,10 @@ exports.car_creat = async function (req, res) {
             images: null
         });
 
-<<<<<<< HEAD
         // upload car images    
         const images = uploadImages(req.body.images, car.name);
         car.images = images;
 
-=======
->>>>>>> origin/master
         car = await car.save();
 
         res.send(response(car, null, null));
