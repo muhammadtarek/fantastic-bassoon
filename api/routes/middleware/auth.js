@@ -6,7 +6,6 @@ function auth(req,res,next){
     res.status(401).json({data : null , message : "Access denied , Please login" , errors : "Access denied"});
   try {
       const decoded = jwt.verify(token,'jwtPrivateKey');
-      console.log(decoded);
       req.user = decoded;
       next();
   }

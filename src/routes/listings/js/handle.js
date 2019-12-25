@@ -15,9 +15,8 @@ export class MyClass {
 let url = 'http://127.0.0.1:3006/api/reservation';
 
 function loaduser(){
-    
-    
-    let xmlhttp = new XMLHttpRequest();
+
+    let xmlhttp = new XMLHttpRequest();    
     xmlhttp.open("GET",url,true);
     xmlhttp.onreadystatechange = function(){
         console.log(xmlhttp.readyState);
@@ -26,13 +25,11 @@ function loaduser(){
             let reservations = JSON.parse(xmlhttp.responseText);
             let marketplace = document.getElementById('market');
             console.log(reservations);
-            try{
 
-
-            
+           
             for(let i=0 ;i<reservations.data.length;i++){
                 let itemInnerHtml = `<div class="one_third lastcolumn">
-            <figure class="shadow"><img src="${reservations.data[i].carId.images[0]}" alt="alt" class="itempic" />
+            <figure class="shadow"><img src="http://localhost:3006/${reservations.data[i].carId.images[0]}" alt="alt" class="itempic" />
               <figcaption> <a href="#">
                <h2 class="heading">${reservations.data[i].carId.name}</h2>
                 <h3 class="heading">Start time :${reservations.data[i].startTime}</h3>
@@ -45,10 +42,7 @@ function loaduser(){
           marketplace.innerHTML += itemInnerHtml;
                 
             }
-            }
-            catch{
-              
-            }
+           
             //console.log(users);
 
             
