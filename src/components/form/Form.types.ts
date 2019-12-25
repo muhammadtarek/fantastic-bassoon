@@ -11,7 +11,7 @@ export enum FieldType {
 }
 
 export interface IField<T = any> {
-  regex?: string;
+  regex?: RegExp;
   errorMessage?: string;
   type: FieldType;
   itemKey: string;
@@ -49,4 +49,6 @@ export interface IFormProps<T = any> extends IStackProps {
   cancelButtonOnClick?: Function;
   disabled?: boolean;
   onValidate?: (data: T) => IFormValidation<T>;
+  onFormChange?: (data: Partial<T>) => void;
+  disableSubmitButton?: boolean;
 }

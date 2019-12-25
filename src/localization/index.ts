@@ -30,6 +30,7 @@ export default {
       name: 'Name',
       color: 'Color:',
       rent: 'Rent',
+      price: 'Price:',
     },
   },
   header: {
@@ -51,6 +52,19 @@ export default {
     color: 'Color',
     submit: 'Save changes',
     cancel: 'Cancel',
+  },
+  deleteCar: {
+    title: 'Are you sure to delete this car?',
+    confirm: 'Delete',
+  },
+  rent: {
+    back: 'Back to listings',
+    rent: 'Reserve this car',
+    helpText: 'Total will be calculated depending on reservation hours',
+    startDate: 'From',
+    endDate: 'To',
+    time: 'At',
+    confirm: 'Rent',
   },
   hideDialog: 'Close',
 };

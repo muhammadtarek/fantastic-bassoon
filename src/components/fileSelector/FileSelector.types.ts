@@ -5,4 +5,5 @@ export interface IFileSelectorProps extends IButtonProps {
   label?: string;
   id: string;
   onFileSelect?: Function;
+  previewImages?: string[];
 }

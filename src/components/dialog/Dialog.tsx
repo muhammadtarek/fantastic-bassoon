@@ -1,5 +1,14 @@
 import React from 'react';
-import { Dialog as OfficeDialog, DialogType, DialogFooter, DefaultButton, PrimaryButton } from 'office-ui-fabric-react';
+import {
+  Dialog as OfficeDialog,
+  DialogType,
+  DialogFooter,
+  DefaultButton,
+  PrimaryButton,
+  IStyleFunction,
+  IDialogContentStyleProps,
+  IDialogContentStyles,
+} from 'office-ui-fabric-react';
 
 import { Colors } from 'utils';
 import Locale from 'localization';
@@ -10,13 +19,20 @@ function Dialog(props: IDialogProps) {
   const hideThisDialog = () => hideDialog(dialogKey);
   const onPrimaryButtonClick = () => mainAction();
 
-  let dialogStyles = {};
+  let dialogStyles: IStyleFunction<IDialogContentStyleProps, IDialogContentStyles> | Partial<IDialogContentStyles> = {};
   let buttonStyles = {};
 
   if (isAlert) {
     dialogStyles = {
       header: {
         backgroundColor: Colors.red,
+      },
+      content: {
+        borderColor: Colors.red,
+        borderTopColor: Colors.red,
+      },
+      title: {
+        color: Colors.white,
       },
     };
 

@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import { DefaultButton, IButtonStyles, Stack, Spinner, SpinnerSize } from 'office-ui-fabric-react';
 
-import Text from 'components/text';
 import ImagePreview from 'components/imagePreview';
 import { IFileSelectorProps } from './FileSelector.types';
 
@@ -13,9 +12,9 @@ const buttonStyles: IButtonStyles = {
 };
 
 function FileSelector(props: IFileSelectorProps) {
-  const { id, onFileSelect } = props;
+  const { id, onFileSelect, previewImages } = props;
   const [isProcessing, setIsProcessing] = useState();
-  const [images, setImages] = useState<string[]>();
+  const [images, setImages] = useState<string[]>(previewImages || []);
 
   const triggerInput = () => {
     const inputRef: HTMLInputElement | null = document.querySelector(`#${id}`);
@@ -27,7 +26,7 @@ function FileSelector(props: IFileSelectorProps) {
   };
 
   const readAsDataURL = (file: any) => {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       const fileReader = new FileReader();
       fileReader.onload = () => {
         return resolve({ data: fileReader.result, name: file.name, size: file.size, type: file.type });
@@ -47,7 +46,6 @@ function FileSelector(props: IFileSelectorProps) {
 
       const imagesAsBas64 = files.map((file: any) => file.data);
       setImages(imagesAsBas64);
-      console.log(imagesAsBas64);
       if (onFileSelect) {
         onFileSelect(imagesAsBas64);
       }
@@ -63,7 +61,7 @@ function FileSelector(props: IFileSelectorProps) {
       {images && images.length === 0 && isProcessing ? (
         <Spinner size={SpinnerSize.large} />
       ) : (
-        <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 5 }}>
+        <Stack horizontal verticalAlign="center" tokens={{ childrenGap: 5 }} wrap>
           {images && images.map((image: string) => <ImagePreview key={image} radius="50px" src={image} />)}
         </Stack>
       )}

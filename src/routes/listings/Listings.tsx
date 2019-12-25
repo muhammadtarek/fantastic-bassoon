@@ -6,8 +6,9 @@ import { Stack, PrimaryButton } from 'office-ui-fabric-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ICarsStore, ICar } from 'store/types';
 import { getAllCars } from 'store/actions';
-import { Switch, Route, useHistory } from 'react-router-dom';
+import { Switch, useHistory } from 'react-router-dom';
 import UpsertCar from 'routes/upsertCar';
+import DeleteCar from 'routes/deleteCar';
 
 function Listings() {
   const history = useHistory();
@@ -21,6 +22,18 @@ function Listings() {
   useEffect(() => {
     dispatch(getAllCars());
   }, []);
+
+  function onCarEdit(id: string) {
+    history.push(`${Constants.LISTINGS}/edit/${id}`);
+  }
+
+  function onCarDelete(id: string) {
+    history.push(`${Constants.LISTINGS}/delete/${id}`);
+  }
+
+  function onCarRent(id: string) {
+    history.push(`/rent/${id}`);
+  }
 
   return (
     <>
@@ -43,13 +56,15 @@ function Listings() {
         >
           <Stack styles={{ root: { marginTop: '20px' } }} horizontal wrap tokens={{ childrenGap: 10 }}>
             {carsList.map((car: ICar) => (
-              <CarCard key={`${car.name}-${car.price}`} {...car} />
+              <CarCard key={car.id} onRent={onCarRent} onDelete={onCarDelete} onEdit={onCarEdit} {...car} />
             ))}
           </Stack>
         </DataViewer>
       </PageContainer>
       <Switch>
         <AuthRoute path={`${Constants.LISTINGS}/new`} component={UpsertCar} />
+        <AuthRoute path={`${Constants.LISTINGS}/edit/:id`} component={UpsertCar} />
+        <AuthRoute path={`${Constants.LISTINGS}/delete/:id`} component={DeleteCar} />
       </Switch>
     </>
   );

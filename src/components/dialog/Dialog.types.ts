@@ -2,7 +2,7 @@ import { IDialogProps as IOfficeDialogProps } from 'office-ui-fabric-react';
 
 export interface IDialogBase<T = any> {
   show: boolean;
-  isLoading: boolean;
+  isLoading?: boolean;
   errorMessage?: string;
   errors?: Record<string, T>;
   hideDialog: Function;

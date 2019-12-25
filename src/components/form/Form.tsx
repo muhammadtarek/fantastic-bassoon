@@ -86,6 +86,7 @@ function renderFields({
             validateOnLoad={false}
             disabled={shouldDisable}
             value={values[itemKey]}
+            styles={{ root: { width: '100%' } }}
             {...props}
           />
         );
@@ -101,6 +102,7 @@ function renderFields({
             onItemClick={(_, option: IComboBoxOption) => setItem(itemKey, option.key)}
             selectedKey={values[itemKey] && values[itemKey]}
             allowFreeform
+            styles={{ root: { width: '100%' } }}
             {...props}
           />
         );
@@ -120,6 +122,7 @@ function renderFields({
               errorMessage: errors[itemKey],
               onGetErrorMessage,
             }}
+            styles={{ root: { width: '100%' } }}
             {...props}
           />
         );
@@ -156,6 +159,7 @@ function renderFields({
               disabled={shouldDisable}
               label={label}
               onFileSelect={(value: string[]) => setItem(itemKey, value)}
+              // previewImages={values[itemKey]}
               {...props}
             />
           </Stack>
@@ -201,7 +205,7 @@ function renderStacks({
 }) {
   return stacks.map((stack, index) => (
     // eslint-disable-next-line react/no-array-index-key
-    <Stack key={`subStack_${index}`} tokens={{ childrenGap: 15 }} {...stack}>
+    <Stack key={`subStack_${index}`} styles={{ root: { width: '100%' } }} tokens={{ childrenGap: 15 }} {...stack}>
       {renderFields({
         fields: stack.fields,
         setItem,
@@ -223,6 +227,8 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
     cancelButtonText,
     disabled,
     onValidate,
+    onFormChange = () => {},
+    disableSubmitButton = false,
     ...stackProps
   } = props;
   const { action, isLoading, data, errorMessage, errors } = storeProps;
@@ -253,6 +259,7 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
     // @ts-ignore
     newTempData[key] = value;
     setTempData(newTempData);
+    onFormChange(tempData);
 
     const validationResults = validateAllFields({ fields: allFields, data: newTempData, errors: _errors });
     if (validationResults.isValid) {
@@ -282,7 +289,6 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
         setErrorMessage(externalValidationResults.errorMessage);
       }
     } else if (action) {
-      console.log(tempData);
       action(tempData);
     }
   }
@@ -341,19 +347,21 @@ function Form<T = Record<string, any>>(props: IFormProps<T>) {
             {_errorMessage}
           </MessageBar>
         )}
-        <Stack horizontal verticalAlign="center" horizontalAlign="end" tokens={{ childrenGap: 5 }}>
-          {cancelButtonText && (
-            <DefaultButton onClick={onCancel} disabled={shouldDisable}>
-              {cancelButtonText}
-            </DefaultButton>
-          )}
-          <PrimaryButton
-            disabled={shouldDisable || !canSubmit}
-            onClick={onClick}
-            style={{ maxWidth: 'max-content' }}
-            onRenderChildren={() => (isLoading ? <Spinner size={SpinnerSize.medium} /> : <span>{buttonText}</span>)}
-          />
-        </Stack>
+        {!disableSubmitButton && (
+          <Stack horizontal verticalAlign="center" horizontalAlign="end" tokens={{ childrenGap: 5 }}>
+            {cancelButtonText && (
+              <DefaultButton onClick={onCancel} disabled={shouldDisable}>
+                {cancelButtonText}
+              </DefaultButton>
+            )}
+            <PrimaryButton
+              disabled={shouldDisable || !canSubmit}
+              onClick={onClick}
+              style={{ maxWidth: 'max-content' }}
+              onRenderChildren={() => (isLoading ? <Spinner size={SpinnerSize.medium} /> : <span>{buttonText}</span>)}
+            />
+          </Stack>
+        )}
       </Stack>
     </form>
   );
