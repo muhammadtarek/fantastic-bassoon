@@ -5,12 +5,12 @@ const schemas = {
     .options({ abortEarly: false })
     .keys({
       startTime: Joi.date()
-        .greater('now')
+        .greater(Date.now())
         .required(),
       endTime: Joi.date()
         .required()
-        .greater('now')
         .greater(Joi.ref('startTime')),
+      carId : Joi.required(),
     }),
 
   user: Joi.object()

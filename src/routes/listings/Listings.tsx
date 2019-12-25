@@ -9,6 +9,8 @@ import { getAllCars } from 'store/actions';
 import { Switch, useHistory } from 'react-router-dom';
 import UpsertCar from 'routes/upsertCar';
 import DeleteCar from 'routes/deleteCar';
+import { MyClass } from './js/handle.js';
+
 
 function Listings() {
   const history = useHistory();
@@ -66,8 +68,15 @@ function Listings() {
         <AuthRoute path={`${Constants.LISTINGS}/edit/:id`} component={UpsertCar} />
         <AuthRoute path={`${Constants.LISTINGS}/delete/:id`} component={DeleteCar} />
       </Switch>
+      <h2>History</h2>
+      <div id="market">
+
+      </div>
+    
     </>
   );
-}
 
+
+}
+new MyClass();
 export default Listings;

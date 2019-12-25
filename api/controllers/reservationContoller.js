@@ -3,7 +3,7 @@ var reservationModel = require('../models/reservation');
 
 exports.index = async function(req, res) {
     // return res.status(200).json(req.user._id);
-    const reservations = await reservationModel.find({userId:req.user._id}).select("-__v").populate('userId').populate('carId').exec();
+    const reservations = await reservationModel.find({userId:"5e02bc76e8028a2b4014100e"}).select("-__v").populate('userId').populate('carId').exec();
     return res.status(200).json({data : reservations, message : null , errors : null});
 };
 

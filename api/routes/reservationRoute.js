@@ -8,7 +8,7 @@ const middleware = require('./middleware/validation');
 const auth = require('../routes/middleware/auth');
 
 
-router.get('/',auth,reservController.index)
+router.get('/',reservController.index)
 
 router.get('/:id',auth,reservController.show)
 

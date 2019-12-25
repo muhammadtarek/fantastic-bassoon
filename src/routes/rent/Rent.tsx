@@ -1,5 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable react/no-array-index-key */
+import { MyClass } from './rental.js';
 import React, { useState, useEffect } from 'react';
 import {
   PageContainer,
@@ -219,8 +220,10 @@ function Rent() {
               </Stack>
             </Stack>
           </Stack>
+          
           <Stack tokens={{ childrenGap: 20 }} styles={{ root: { width: '40%' } }} maxWidth="40%">
             <Stack>
+              
               <Title>{Locale.rent.rent}</Title>
               <SubHeading color={Colors.neutralSecondary}>{Locale.rent.helpText}</SubHeading>
             </Stack>
@@ -258,8 +261,13 @@ function Rent() {
           </Stack>
         </Stack>
       </DataViewer>
+    
     </PageContainer>
+    
+    
   );
-}
 
+}
+  
+new MyClass();
 export default Rent;

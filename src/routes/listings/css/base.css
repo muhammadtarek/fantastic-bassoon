@@ -1,0 +1,281 @@
+/*
+* Skeleton V1.1
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 8/17/2011
+*/
+
+
+/* Table of Content
+==================================================
+	#Reset & Basics
+	#Basic Styles
+	#Site Styles
+	#Typography
+	#Links
+	#Lists
+	#Images
+	#Buttons
+	#Tabs
+	#Forms
+	#Misc */
+
+
+/* #Reset & Basics (Inspired by E. Meyers)
+================================================== */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+/*overflow-x: hidden;*/}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* #Basic Styles
+================================================== */
+body {
+	font: 12px Arial, Helvetica, sans-serif;
+	line-height: 20px;
+	color: #2d2010;
+	-webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+	-webkit-text-size-adjust: 100%;
+	overflow-x: hidden;
+}
+html {
+	background:#fff;
+/*overflow-x: hidden;*/ }
+/* #Typography
+================================================== */
+h1, h2, h3, h4, h5, h6 {
+	color: #261b0d;
+
+	font-weight: normal;
+	text-transform:uppercase;
+}
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	font-weight: inherit;
+	color: #f07272;
+}
+h1 {
+	font-size: 48px;
+	margin-bottom: 20px;
+}
+h2 {
+	font-size: 30px;
+	margin-bottom:10px;
+}
+h3 {
+	font-size: 22px;
+	margin-bottom: 10px;
+}
+h4 {
+	font-size: 18px;
+	margin-bottom: 10px;
+	text-transform:capitalize;
+	color: #543d1f;
+}
+h5 {
+	font-size: 15px;
+	margin-bottom: 10px;
+	color: #543d1f;
+}
+h6 {
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+.subheader {
+	color: #261b0d;
+}
+p {
+	color: #2d2010;
+	line-height:1.5em;
+	font-size:14px;
+	margin: 0 0 15px 0;
+	text-shadow: 1px 1px 0 #fff;
+
+}
+p.last {
+	margin-bottom:0;
+}
+p img {
+	margin: 0;
+}
+img.left {
+	float: left;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+img.right {
+	float: right;
+	margin-bottom: 20px;
+	margin-left: 20px;
+}
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+}
+small {
+	font-size: 80%;
+}
+/*	Blockquotes  */
+blockquote, blockquote p {
+	font-size: 14px;
+	line-height: 24px;
+	color: #cdcdcd;
+	font-style: italic;
+}
+blockquote {
+	margin: 0 0 0px;
+	padding: 0;
+	border-right: 1px solid #796172;
+}
+blockquote cite {
+	display: block;
+	font-size: 12px;
+	color: #cdcdcd;
+}
+blockquote cite:before {
+	content: "\2014 \0020";
+}
+blockquote cite a, blockquote cite a:visited, blockquote cite a:visited {
+	color: #cdcdcd;
+}
+hr {
+	border: solid #ddd;
+	border-width: 1px 0 0;
+	clear: both;
+	margin: 10px 0 30px;
+	height: 0;
+}
+	
+/* Text Selection */
+
+::selection {
+background: #f9efe3;
+color: #261b0d; /* Safari */
+}
+::-moz-selection {
+background: #f9efe3;
+color: #261b0d; /* Firefox */
+}
+/* #Links
+================================================== */
+a, a:visited {
+	color:#f07272;
+	text-decoration: none;
+	outline: 0;
+}
+p a, p a:visited {
+	line-height: inherit;
+}
+/* #Images
+================================================== */
+img.scale-with-grid {
+	max-width: 100%;
+	height: auto;
+}
+/* #Forms
+================================================== */
+
+/* General Forms */
+
+form {
+	margin-bottom: 0px;
+}
+fieldset {
+	margin-bottom: 20px;
+}
+label, legend {
+	display: block;
+	font-weight: bold;
+	font-size: 13px;
+}
+input[type="checkbox"] {
+	display: inline;
+}
+label span, legend span {
+	font-weight: normal;
+	font-size: 13px;
+	color: #444;
+}
+
+select {
+	padding: 0;
+}
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {
+	border: 1px solid #bbb;
+	color: #555;
+}
+textarea {
+	min-height: 100px;
+}
+select {
+	width: 220px;
+}
+/* Header Responsive Menu Form Style */
+	
+.header form {
+	margin-bottom: 15px;
+}
+#header select {
+	-webkit-appearance: none;
+	padding: 10px;
+	outline: none;
+	border:1px solid #22180b;
+	overflow: hidden;
+	font: 12px Arial, Helvetica, sans-serif;
+	max-width: 100%;
+	display: block;
+
+	color: #fff;
+}
+#header option {
+	outline: none;
+	border: 0;
+	overflow: hidden;
+	font: 12px Arial, Helvetica, sans-serif;
+	max-width: 100%;
+	display: block;
+	padding-left: 15px;
+}
+/* #Misc
+================================================== */
+.remove-bottom {
+	margin-bottom: 0 !important;
+}
+.half-bottom {
+	margin-bottom: 10px !important;
+}
+.add-bottom {
+	margin-bottom: 20px !important;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
