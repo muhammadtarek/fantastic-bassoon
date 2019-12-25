@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useState, useEffect } from 'react';
 import { Icon, Stack, IIconStyles, FontWeights, Image, PrimaryButton } from 'office-ui-fabric-react';
 import { Card, ICardTokens, ICardSectionStyles, ICardSectionTokens } from '@uifabric/react-cards';
@@ -10,17 +11,17 @@ import Text, { Heading, MegaTitle, Caption } from '../text';
 import { ICarCardProps } from './CarCard.types';
 import ColorPreview from '../colorPreview';
 
-function isURL(str: string) {
-  const exp = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)?/gi;
-  const pattern = new RegExp(exp); // fragment locator
-  return pattern.test(str);
-}
-
-function renderImage(image: string) {
-  return isURL(image) ? image : `data:image/gif;base64,${image}`;
-}
-
-function CarCard({ color, description, images, name, price }: ICarCardProps) {
+function CarCard({
+  id,
+  color,
+  description,
+  images,
+  name,
+  price,
+  onDelete = () => {},
+  onEdit = () => {},
+  onRent = () => {},
+}: ICarCardProps) {
   const [selectedImagePreview, setSelectedImagePreview] = useState();
 
   useEffect(() => {
@@ -51,16 +52,16 @@ function CarCard({ color, description, images, name, price }: ICarCardProps) {
   return (
     <Card onClick={() => {}} tokens={cardTokens}>
       <Card.Section fill verticalAlign="end" styles={backgroundImageCardSectionStyles}>
-        <Image src={renderImage(images[selectedImagePreview])} width="100%" />
+        <Image styles={{ image: { objectFit: 'cover' } }} src={images[selectedImagePreview]} width="100%" />
       </Card.Section>
       <Card.Section>
-        <Stack horizontal tokens={{ childrenGap: 5 }}>
+        <Stack horizontal tokens={{ childrenGap: 5 }} wrap>
           {images.map((image: string, index: number) => (
             <ImagePreview
-              key={image}
+              key={`${id}-${index}`}
               isSelected={index === selectedImagePreview}
               onClick={() => setSelectedImagePreview(index)}
-              src={renderImage(image)}
+              src={image}
             />
           ))}
         </Stack>
@@ -84,12 +85,12 @@ function CarCard({ color, description, images, name, price }: ICarCardProps) {
 
       <Card.Section horizontal horizontalAlign="end" styles={footerCardSectionStyles} tokens={footerCardSectionTokens}>
         <PermissionFlag permissionKey={CONTROL_CAR}>
-          <Icon iconName="Edit" styles={iconStyles} onClick={() => console.log('edit')} />
-          <Icon iconName="Delete" styles={iconStyles} color={Colors.red} onClick={() => console.log('delete')} />
+          <Icon iconName="Edit" styles={iconStyles} onClick={() => onEdit(id)} />
+          <Icon iconName="Delete" styles={iconStyles} color={Colors.red} onClick={() => onDelete(id)} />
         </PermissionFlag>
 
         <PermissionFlag permissionKey={RENT_CAR}>
-          <PrimaryButton>{Locale.listings.car.rent}</PrimaryButton>
+          <PrimaryButton onClick={() => onRent(id)}>{Locale.listings.car.rent}</PrimaryButton>
         </PermissionFlag>
       </Card.Section>
     </Card>

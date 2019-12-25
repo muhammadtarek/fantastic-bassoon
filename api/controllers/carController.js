@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const {Car, validateCar} = require('../models/car')
 
 // return  {data, message, errors} JSON object as res object
@@ -53,24 +55,51 @@ exports.car_creat = async function (req, res) {
             return res.status(400).send(response(req.body, 'Please enter valid data', errors))
         }
 
-        const images = [];
-        if(req.files) {
-
-            req.files.forEach(image => {
-                images.push(image.path);
-            });
-        }
         let car = new Car ({
             name: req.body.name,
             color: req.body.color,
             description: req.body.description,
             price: req.body.price,
-            images: images
+            images: null
         });
 
+        // upload car images
+        const images = uploadImages(req.body.images, car.name);
+        car.images = images;
         car = await car.save();
+
         res.send(response(car, null, null));
     } catch (error) { res.status(400).send(response(null, 'Sorry, unexpected error happened', error)) };
+}
+
+function uploadImages(base64Images, carName) {
+    let images = [];
+    try {
+        var image;
+        base64Images.forEach(base64Image => {
+            // Extract base64 image
+            image = base64Image.match(/data:image\/([a-zA-Z]*);base64,([^\"]*)/),
+            imageObj = {};
+
+            if (image.length !== 3) {
+            return new Error('Invalid input string');
+            }
+
+            imageObj.type = image[1];
+            imageObj.data = new Buffer(image[2], 'base64');
+            let decodedImg = imageObj;
+            let imageBuffer = decodedImg.data;
+
+            let fileName = carName + Date.now() + '.' + decodedImg.type;
+
+            // Save image on server
+            fs.writeFileSync("./car-images/" + fileName, imageBuffer, 'utf8');
+            images.push("api/car-images/"+ fileName);
+        });
+    } catch (ex) {
+        console.log('Something faild');
+    }
+    return images;
 }
 
 // Delete specific car
@@ -97,7 +126,7 @@ exports.car_update = async function (req, res) {
         car.color = (req.body.color) ? req.body.color : car.color;
         car.description = (req.body.description) ? req.body.description : car.description;
         car.price = (req.body.price) ? req.body.price : car.price;
-        car.images = (req.body.images) ? req.body.images : car.images;
+        car.images = (req.body.images) ? uploadImages(req.body.images, car.name) : car.images;
 
         // validate car before updating data
         const {error} = validateCar(car);
